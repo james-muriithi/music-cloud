@@ -4,9 +4,7 @@
       <app-bar />
       <side-nav />
       <v-main>
-            <v-container class="px-4 py-0 fill-height" fluid>
-              <router-view/>
-            </v-container>
+        <router-view />
       </v-main>
     </v-app>
   </div>
@@ -15,11 +13,69 @@
 <script>
 export default {
   name: "App",
-}
+};
 </script>
 
-<style>
+<style lang="scss">
+::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #202020;
+    border-left: 1px solid #2c2c2c;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3e3e3e;
+    border: solid 2px #202020;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+  }
+  
 .theme--dark.v-application {
-    background: var(--v-background-base) !important;
+  background: var(--v-background-base) !important;
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #202020;
+    border-left: 1px solid #2c2c2c;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3e3e3e;
+    border: solid 2px #202020;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+  }
+}
+
+.theme--light.v-application {
+  ::-webkit-scrollbar-track {
+    background: #e6e6e6;
+    border-left: 1px solid #dadada;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #b0b0b0;
+    border: solid 2px #e6e6e6;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4c4c4d;
+  }
 }
 </style>

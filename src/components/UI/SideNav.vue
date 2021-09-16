@@ -73,12 +73,12 @@ export default {
       return this.$vuetify.breakpoint.smAndDown;
     },
     showDrawer: {
-      get: function () { 
-          return this.$store.getters["sidebar/showDrawer"];
-       },
-       set: function (state) { 
-           this.$store.dispatch("sidebar/setDrawerState", state);
-        }
+      get: function () {
+        return this.$store.getters["sidebar/showDrawer"];
+      },
+      set: function (state) {
+        this.$store.dispatch("sidebar/setDrawerState", state);
+      },
     },
   },
   methods: {
@@ -150,6 +150,12 @@ export default {
     margin-bottom: 5px;
     &.v-list-item--link:not(.v-list-item--disabled) {
       color: #b3b3b3;
+      &:hover {
+        &::before {
+          border-top-right-radius: 50px;
+          border-bottom-right-radius: 50px;
+        }
+      }
     }
     &.v-list-item--link.highlighted {
       background-image: linear-gradient(

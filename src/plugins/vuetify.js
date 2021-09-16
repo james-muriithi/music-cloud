@@ -6,19 +6,20 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     theme: {
-        dark: false,
+        dark: true,
         themes: {
             light: {
                 primary: "#772bfb",
                 secondary: colors.grey.darken1,
                 accent: colors.shades.black,
                 error: colors.red.accent3,
-                background: colors.indigo.lighten5,
+                background: "#ffffff",
             },
             dark: {
                 primary: colors.blue.lighten3,
                 background: "#121212",
                 navBackground: "#121212",
+                cardBackground: '#181818'
             },
         },
         options: {
