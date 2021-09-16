@@ -3,14 +3,20 @@
     <v-app>
       <app-bar />
       <side-nav />
-      <v-content>
+      <v-main>
             <v-container class="px-4 py-0 fill-height" fluid>
               <router-view/>
             </v-container>
-      </v-content>
+      </v-main>
     </v-app>
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+}
+</script>
 
 <style>
 .theme--dark.v-application {

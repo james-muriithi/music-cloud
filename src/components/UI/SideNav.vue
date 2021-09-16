@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="showDrawer"
     :mini-variant.sync="mini"
-    :permanent="showDrawer"
+    :permanent="!smallScreen"
     app
     floating
     class="bg-background-base nd"
@@ -45,7 +45,6 @@
 export default {
   data() {
     return {
-      drawer: true,
       items: [
         { title: "Home", icon: "mdi-fire", path: "/" },
         { title: "Search", icon: "mdi-magnify", path: "/search" },
@@ -70,21 +69,42 @@ export default {
     minify() {
       return this.$vuetify.breakpoint.mdAndDown;
     },
-    showDrawer() {
-      return !this.$vuetify.breakpoint.smAndDown;
+    smallScreen() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+    showDrawer: {
+      get: function () { 
+          return this.$store.getters["sidebar/showDrawer"];
+       },
+       set: function (state) { 
+           this.$store.dispatch("sidebar/setDrawerState", state);
+        }
+    },
+  },
+  methods: {
+    setDrawerState(state) {
+      this.$store.dispatch("sidebar/setDrawerState", state);
+    },
+    toggleDrawer() {
+      this.$store.dispatch("sidebar/toggleDrawer");
     },
   },
   watch: {
     minify(newValue) {
       this.mini = newValue;
     },
-    showDrawer(newValue) {
-      this.drawer = newValue;
+    smallScreen(newValue) {
+      if (newValue) {
+        this.setDrawerState(false);
+      }
     },
   },
   created() {
+    if (this.smallScreen) {
+      this.setDrawerState(false);
+    }
+
     this.mini = this.minify;
-    this.drawer = this.showDrawer;
   },
 };
 </script>
