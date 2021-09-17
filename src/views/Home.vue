@@ -1,13 +1,25 @@
 <template>
   <v-container class="home px-5">
     <div class="top-songs">
-      <div class="text-h5 font-weight-bold">Top Songs</div>
-      <div class="pt-5 songs">
-
-      </div>
+      <v-row>
+        <v-col cols="12" lg="7">
+          <div class="text-h5 font-weight-bold">Top Songs</div>
+          <div class="pa-3 mt-3 songs elevation-2">
+            <song-card />
+            <song-card />
+            <song-card />
+          </div>
+        </v-col>
+        <v-col cols="12" lg="5">
+          <div class="text-h5 font-weight-bold">Top Artists</div>
+          <div class="pa-3 mt-3">
+            
+          </div>
+        </v-col>
+      </v-row>
     </div>
     <div class="top-albums pt-5">
-      <div class="text-h5 font-weight-bold">Top Albums</div>
+      <div class="text-h5 font-weight-bold">New Albums</div>
       <div class="pt-5 albums">
         <v-row>
           <v-col cols="12" sm="6" md="4" lg="3">
@@ -27,10 +39,11 @@
 
 <script>
 import AlbumCard from "../components/albums/AlbumCard.vue";
+import SongCard from "../components/songs/SongCard.vue";
 // @ is an alias to /src
 
 export default {
-  components: { AlbumCard },
+  components: { AlbumCard, SongCard },
   name: "Home",
   computed: {
     albumCardStyle() {
@@ -53,3 +66,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.songs {
+  border-radius: 10px;
+  background: var(--v-cardBackground-base);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+</style>

@@ -6,9 +6,7 @@
           <v-icon>mdi-play</v-icon>
         </v-btn>
         <div class="details">
-          <div class="album-title pl-2 pr-1 pt-0 white--text">
-            Donda
-          </div>
+          <div class="album-title pl-2 pr-1 pt-0 white--text">Donda</div>
           <div class="artist text-caption pl-2">Kanye</div>
         </div>
       </div>
