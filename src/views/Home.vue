@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" lg="7">
           <div class="text-h5 font-weight-bold">Top Songs</div>
-          <div class="pa-2 mt-3 songs elevation-2">
+          <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
             <song-card />
             <song-card />
             <song-card />
@@ -12,9 +12,7 @@
         </v-col>
         <v-col cols="12" lg="5">
           <div class="text-h5 font-weight-bold">Top Artists</div>
-          <div class="pa-3 mt-3">
-            
-          </div>
+          <div class="pa-3 mt-3"></div>
         </v-col>
       </v-row>
     </div>
@@ -70,8 +68,17 @@ export default {
 <style lang="scss" scoped>
 .songs {
   border-radius: 10px;
-  background: var(--v-cardBackground-base);
+  // background: var(--v-cardBackground-base);
   padding-left: 4px;
   padding-right: 4px;
+}
+.text-h5 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+.theme--light {
+  .text-h5 {
+    color: #595959;
+  }
 }
 </style>
