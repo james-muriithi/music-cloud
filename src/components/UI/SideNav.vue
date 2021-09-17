@@ -96,15 +96,17 @@ export default {
     smallScreen(newValue) {
       if (newValue) {
         this.setDrawerState(false);
+        this.mini = false;
       }
     },
   },
   created() {
     if (this.smallScreen) {
       this.setDrawerState(false);
+      this.mini = false;
+    } else {
+      this.mini = this.minify;
     }
-
-    this.mini = this.minify;
   },
 };
 </script>
