@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 .song-card {
   padding-top: 3px;
-  //   padding-bottom: 3px;
+    padding-right: 5px;
   margin-bottom: 15px;
   border-radius: 3px;
   .song-image {

@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" lg="7">
           <div class="text-h5 font-weight-bold">Top Songs</div>
-          <div class="pa-3 mt-3 songs elevation-2">
+          <div class="pa-2 mt-3 songs elevation-2">
             <song-card />
             <song-card />
             <song-card />
