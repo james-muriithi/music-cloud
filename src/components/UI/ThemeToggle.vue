@@ -21,11 +21,13 @@
 </template>
 
 <script>
+import { saveToLocalStorage } from "../../helpers";
 export default {
   name: "ThemeToggle",
   methods: {
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      saveToLocalStorage("theme", this.$vuetify.theme.dark ? "dark" : "light");
     },
   },
 };

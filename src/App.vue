@@ -11,8 +11,18 @@
 </template>
 
 <script>
+import { getFromLocalStorage } from './helpers';
 export default {
   name: "App",
+  created() {
+    let darkTheme = true;
+    
+    if (getFromLocalStorage('theme')) {
+      darkTheme = getFromLocalStorage('theme') != 'light';
+    }
+
+    this.$vuetify.theme.dark = darkTheme;
+  },
 };
 </script>
 
