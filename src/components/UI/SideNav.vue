@@ -66,7 +66,7 @@ export default {
           icon: "mdi-account-music-outline",
           path: "/artists",
         },
-        { title: "New Album", icon: "mdi-album", path: "/albums" },
+        { title: "New Albums", icon: "mdi-album", path: "/albums" },
         { title: "Playlists", icon: "mdi-playlist-music", path: "/playlists" },
       ],
       mini: this.minify,
