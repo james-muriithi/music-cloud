@@ -1,15 +1,15 @@
 <template>
   <router-link :to="link" class="fill-height">
-    <div class="album-card elevation-2" :style="background">
-      <div class="album-details d-flex">
+    <div class="playlist-card elevation-2" :style="background">
+      <div class="playlist-details d-flex">
         <v-btn class="play-button white--text" fab icon>
           <v-icon>mdi-play</v-icon>
         </v-btn>
         <div class="details">
           <div class="album-title pl-2 pr-1 pt-0 white--text">
-            {{ album.title }}
+            {{ playlist.title }}
           </div>
-          <div class="artist text-caption pl-2">{{ album.artist }}</div>
+          <div class="artist text-caption pl-2">{{ playlist.artists }}</div>
         </div>
       </div>
     </div>
@@ -18,9 +18,9 @@
 
 <script>
 export default {
-  name: "AlbumCard",
+  name: "PlaylistCard",
   props: {
-    album: {
+    playlist: {
       type: Object,
       required: true,
     },
@@ -32,7 +32,7 @@ export default {
     background() {
       return {
         background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
-          url("${this.album.cover}") center center / cover no-repeat`,
+          url("${this.playlist.cover}") center center / cover no-repeat`,
         backgroundRepeat: "no-repeat",
         backgroundCenter: "center",
       };
@@ -42,13 +42,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.album-card {
+.playlist-card {
   border-radius: 15px;
   background: var(--v-cardBackground-base);
   position: relative;
-  min-height: 190px;
-  // min-height: 250px;
-  .album-details {
+//   min-height: 180px;
+  min-height: 250px;
+  .playlist-details {
     position: absolute;
     bottom: 8px;
     left: 10px;
@@ -56,8 +56,8 @@ export default {
     .play-button {
       font-size: 26px;
       background: #772bfb;
-      height: 35px;
-      width: 35px;
+      height: 40px;
+      width: 40px;
     }
     .details {
       white-space: nowrap;

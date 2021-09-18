@@ -44,7 +44,7 @@
         </v-col>
       </v-row>
     </div>
-    <div class="top-albums pt-5">
+    <div class="top-albums mt-5">
       <div class="text-h5 font-weight-bold">New Albums</div>
       <div class="pt-5 albums">
         <v-row>
@@ -55,9 +55,27 @@
             lg="2"
             v-for="album in topAlbums"
             :key="album.id"
-            class="pr-0 pr-xs-3"
+            class="pr-0"
           >
             <album-card :album="album" />
+          </v-col>
+        </v-row>
+      </div>
+    </div>
+
+    <div class="top-albums mt-7">
+      <div class="text-h5 font-weight-bold">Top Playlists</div>
+      <div class="pt-5 albums">
+        <v-row>
+          <v-col
+            cols="6"
+            sm="6"
+            md="4"
+            lg="3"
+            v-for="playlist in topPlaylists"
+            :key="playlist.id"
+          >
+            <playlist-card :playlist="playlist" />
           </v-col>
         </v-row>
       </div>
@@ -68,11 +86,12 @@
 <script>
 import AlbumCard from "../components/albums/AlbumCard.vue";
 import ArtistCard from "../components/artists/ArtistCard.vue";
+import PlaylistCard from "../components/playlists/PlaylistCard.vue";
 import SongCard from "../components/songs/SongCard.vue";
 // @ is an alias to /src
 
 export default {
-  components: { AlbumCard, SongCard, ArtistCard },
+  components: { AlbumCard, SongCard, ArtistCard, PlaylistCard },
   name: "Home",
   data() {
     return {
@@ -160,14 +179,22 @@ export default {
             "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
           name: "Khalid",
         },
-        
       ],
       topPlaylists: [
         {
           id: 1,
           title: "Daily Mix",
-          cover: "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb8dabeabefec7df1a02e7d61b/5/en/small"
-        }
+          cover:
+            "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb4fb3e017c2e31b1b8b10e891/1/en/default",
+          artists: "Drake, Anne Marie, Khalid",
+        },
+        {
+          id: 2,
+          title: "Daily Mix 4",
+          cover:
+            "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb66776867a735406aaa78afc4/4/en/default",
+          artists: "Alan Walker, Kygo",
+        },
       ],
     };
   },
