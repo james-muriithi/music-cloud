@@ -11,8 +11,19 @@
 </template>
 
 <script>
+import { fetchBrowseData } from "./helpers/apple-music";
 export default {
   name: "App",
+  data() {
+    return {
+      isLoading: false
+    }
+  },
+  async created() {
+    this.isLoading = true
+    await fetchBrowseData();
+    this.isLoading = false;
+  },
 };
 </script>
 

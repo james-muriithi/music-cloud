@@ -106,6 +106,9 @@ export default {
       'topPlaylists',
     ])
   },
+  created() {
+    this.$store.dispatch('fetchBrowseData')
+  },
 };
 </script>
 
