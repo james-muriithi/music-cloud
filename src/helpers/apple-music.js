@@ -10,7 +10,6 @@ axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 function fetchBrowseData(limit) {
     return axios.get('catalog/ke/charts', { params: { types: "albums,songs,playlists", limit } })
         .then(res => {
-            console.log(res.data);
             return res.data.results
         })
 }

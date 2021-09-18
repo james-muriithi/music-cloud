@@ -5,11 +5,16 @@
         <v-col cols="12" lg="8" class="px-md-3 px-0">
           <div class="text-h5 font-weight-bold">Top Songs</div>
           <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
-            <song-card
-              v-for="song in recentSongs"
-              :key="song.id"
-              :song="song"
-            />
+            <span v-if="isLoading">
+              <song-skeleton v-for="n in 3" :key="n" />
+            </span>
+            <span class="" v-else>
+              <song-card
+                v-for="song in recentSongs"
+                :key="song.id"
+                :song="song"
+              />
+            </span>
           </div>
         </v-col>
         <v-col cols="12" lg="4">
@@ -25,7 +30,20 @@
             >
               <v-row class="d-flex justify-content-end">
                 <v-col cols="12" lg="10">
-                  <v-row>
+                  <v-row v-if="isLoading">
+                    <v-col
+                      cols="6"
+                      sm="3"
+                      lg="6"
+                      class="artist pa-1"
+                      v-for="n in 4"
+                      :key="n"
+                    >
+                      <artist-skeleton />
+                    </v-col>
+                  </v-row>
+
+                  <v-row v-else>
                     <v-col
                       cols="6"
                       sm="3"
@@ -47,7 +65,20 @@
     <div class="top-albums mt-5">
       <div class="text-h5 font-weight-bold">New Albums</div>
       <div class="pt-5 albums">
-        <v-row>
+        <v-row v-if="isLoading">
+          <v-col
+            cols="6"
+            sm="4"
+            md="3"
+            lg="2"
+            v-for="n in 4"
+            :key="n"
+            class="pr-0"
+          >
+            <album-skeleton />
+          </v-col>
+        </v-row>
+        <v-row v-else>
           <v-col
             cols="6"
             sm="4"
@@ -63,10 +94,23 @@
       </div>
     </div>
 
-    <div class="top-albums mt-7">
+    <div class="top-playlists mt-7">
       <div class="text-h5 font-weight-bold">Top Playlists</div>
-      <div class="pt-5 albums">
-        <v-row>
+      <div class="pt-5 playlists">
+        <v-row v-if="isLoading">
+          <v-col
+            cols="6"
+            sm="4"
+            md="3"
+            lg="2"
+            v-for="n in 2"
+            :key="n"
+            class="pr-0"
+          >
+            <album-skeleton />
+          </v-col>
+        </v-row>
+        <v-row v-else>
           <v-col
             cols="12"
             sm="6"
@@ -85,29 +129,41 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { fetchBrowseData } from "../helpers/apple-music";
 import AlbumCard from "../components/albums/AlbumCard.vue";
 import ArtistCard from "../components/artists/ArtistCard.vue";
 import PlaylistCard from "../components/playlists/PlaylistCard.vue";
 import SongCard from "../components/songs/SongCard.vue";
 
+import AlbumSkeleton from "../components/albums/AlbumSkeleton.vue";
+import ArtistSkeleton from "../components/artists/ArtistSkeleton.vue";
+// import PlaylistSkeleton from "../components/albums/AlbumSkeleton.vue";
+import SongSkeleton from "../components/songs/SongSkeleton.vue";
+
 export default {
-  components: { AlbumCard, SongCard, ArtistCard, PlaylistCard },
+  components: {
+    AlbumCard,
+    SongCard,
+    ArtistCard,
+    PlaylistCard,
+    AlbumSkeleton,
+    SongSkeleton,
+    ArtistSkeleton,
+    // PlaylistSkeleton,
+  },
   name: "Home",
   data() {
     return {
-
+      isLoading: false,
     };
   },
   computed: {
-    ...mapGetters([
-      'recentSongs',
-      'topAlbums',
-      'topArtists',
-      'topPlaylists',
-    ])
+    ...mapGetters(["recentSongs", "topAlbums", "topArtists", "topPlaylists"]),
   },
-  created() {
-    this.$store.dispatch('fetchBrowseData')
+  async created() {
+    this.isLoading = true;
+    await fetchBrowseData();
+    this.isLoading = false;
   },
 };
 </script>

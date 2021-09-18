@@ -1,6 +1,7 @@
 export default {
     setRecentSongs(state, songs) {
-        state.music.recentSongs = songs
+        console.log(songs);
+        // state.music.recentSongs = songs
     },
     setTopAlbums(state, albums) {
         state.music.topAlbums = albums
