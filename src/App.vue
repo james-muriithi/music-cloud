@@ -78,4 +78,7 @@ export default {
     background: #4c4c4d;
   }
 }
+.w-100{
+  width: 100%;
+}
 </style>

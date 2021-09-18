@@ -23,7 +23,7 @@
           </div>
         </v-col>
 
-        <v-col md="3" class="text-center album d-none d-sm-flex">
+        <v-col sm="3" md="3" class="text-center album d-none d-sm-flex">
           <router-link to="/"> {{ song.album }} </router-link>
         </v-col>
 
@@ -31,7 +31,7 @@
           {{ song.duration }}
         </v-col>
 
-        <v-col md="2" cols="3" class="text-right d-flex actions pt-4">
+        <v-col sm="2"  cols="3" class="text-right d-flex actions pt-4">
           <v-btn icon class="like">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
@@ -101,7 +101,7 @@ export default {
           text-decoration: underline;
         }
       }
-      padding-top: 20px;
+      padding-top: 24px;
     }
     .song-artist a {
       text-decoration: none;

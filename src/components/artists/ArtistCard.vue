@@ -39,6 +39,7 @@ export default {
   background: var(--v-cardBackground-base);
   position: relative;
   height: 130px;
+  min-width: 130px;
   width: 100%;
   border-radius: 5px;
   .artist-details {

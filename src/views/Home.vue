@@ -2,7 +2,7 @@
   <v-container class="home px-5">
     <div class="top-songs">
       <v-row class="mx-0">
-        <v-col cols="12" lg="7" class="px-md-3 px-0">
+        <v-col cols="12" lg="8" class="px-md-3 px-0">
           <div class="text-h5 font-weight-bold">Top Songs</div>
           <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
             <song-card
@@ -12,7 +12,7 @@
             />
           </div>
         </v-col>
-        <v-col cols="12" lg="5">
+        <v-col cols="12" lg="4">
           <div class="text-lg-center">
             <div class="text-h5 font-weight-bold">Top Artists</div>
             <div
@@ -24,7 +24,7 @@
             }`"
             >
               <v-row class="d-flex justify-content-end">
-                <v-col cols="12" lg="8">
+                <v-col cols="12" lg="10">
                   <v-row>
                     <v-col
                       cols="6"
@@ -49,12 +49,13 @@
       <div class="pt-5 albums">
         <v-row>
           <v-col
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
+            cols="6"
+            sm="4"
+            md="3"
+            lg="2"
             v-for="album in topAlbums"
             :key="album.id"
+            class="pr-0 pr-xs-3"
           >
             <album-card :album="album" />
           </v-col>
@@ -160,6 +161,13 @@ export default {
           name: "Khalid",
         },
         
+      ],
+      topPlaylists: [
+        {
+          id: 1,
+          title: "Daily Mix",
+          cover: "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb8dabeabefec7df1a02e7d61b/5/en/small"
+        }
       ],
     };
   },

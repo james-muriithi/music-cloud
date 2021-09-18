@@ -46,7 +46,7 @@ export default {
   border-radius: 15px;
   background: var(--v-cardBackground-base);
   position: relative;
-  min-height: 250px;
+  min-height: 180px;
   .album-details {
     position: absolute;
     bottom: 8px;
@@ -67,12 +67,14 @@ export default {
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
+        
       }
       .artist {
         color: rgb(179, 179, 179);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: 10px;
       }
     }
   }
