@@ -38,11 +38,18 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <template v-slot:append>
+        <div class="pa-2 text-left">
+          <theme-toggle />
+        </div>
+      </template>
   </v-navigation-drawer>
 </template>
 
 <script>
+import ThemeToggle from './ThemeToggle.vue';
 export default {
+  components: { ThemeToggle },
   data() {
     return {
       items: [
