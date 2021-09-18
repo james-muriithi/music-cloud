@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
 import colors from 'vuetify/lib/util/colors';
 
-import { getFromLocalStorage } from '@/helpers';
+import { getFromLocalStorage } from '@/helpers/index.js';
 
 Vue.use(Vuetify);
 

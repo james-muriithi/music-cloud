@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { saveToLocalStorage } from "../../helpers";
+import { saveToLocalStorage } from "@/helpers/index.js";
 export default {
   name: "ThemeToggle",
   methods: {
