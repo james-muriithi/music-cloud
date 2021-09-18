@@ -39,7 +39,7 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-        <div class="pa-2 text-left">
+        <div class="pa-2 text-left d-none">
           <theme-toggle />
         </div>
       </template>

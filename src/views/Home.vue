@@ -68,7 +68,7 @@
       <div class="pt-5 albums">
         <v-row>
           <v-col
-            cols="6"
+            cols="12"
             sm="6"
             md="4"
             lg="3"

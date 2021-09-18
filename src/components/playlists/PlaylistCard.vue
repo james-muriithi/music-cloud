@@ -48,6 +48,7 @@ export default {
   position: relative;
 //   min-height: 180px;
   min-height: 250px;
+  
   .playlist-details {
     position: absolute;
     bottom: 8px;
