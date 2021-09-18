@@ -1,8 +1,8 @@
 <template>
   <v-container class="home px-5">
     <div class="top-songs">
-      <v-row>
-        <v-col cols="12" lg="7">
+      <v-row class="mx-0">
+        <v-col cols="12" lg="7" class="px-md-3 px-0">
           <div class="text-h5 font-weight-bold">Top Songs</div>
           <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
             <song-card
@@ -13,8 +13,34 @@
           </div>
         </v-col>
         <v-col cols="12" lg="5">
-          <div class="text-h5 font-weight-bold">Top Artists</div>
-          <div class="pa-3 mt-3"></div>
+          <div class="text-lg-center">
+            <div class="text-h5 font-weight-bold">Top Artists</div>
+            <div
+              :class="`py-3 mt-3 artists fill-width
+            ${
+              $vuetify.breakpoint.smAndUp && $vuetify.breakpoint.mdAndDown
+                ? 'sm'
+                : ''
+            }`"
+            >
+              <v-row class="d-flex justify-content-end">
+                <v-col cols="12" lg="8">
+                  <v-row>
+                    <v-col
+                      cols="6"
+                      sm="3"
+                      lg="6"
+                      class="artist pa-1"
+                      v-for="artist in topArtists"
+                      :key="artist.id"
+                    >
+                      <artist-card :artist="artist" />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </div>
+          </div>
         </v-col>
       </v-row>
     </div>
@@ -40,11 +66,12 @@
 
 <script>
 import AlbumCard from "../components/albums/AlbumCard.vue";
+import ArtistCard from "../components/artists/ArtistCard.vue";
 import SongCard from "../components/songs/SongCard.vue";
 // @ is an alias to /src
 
 export default {
-  components: { AlbumCard, SongCard },
+  components: { AlbumCard, SongCard, ArtistCard },
   name: "Home",
   data() {
     return {
@@ -52,7 +79,7 @@ export default {
         {
           id: 1,
           title: "8TEEN",
-          artist: "Kalid",
+          artist: "Khalid",
           cover:
             "https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577",
           album: "American Teen",
@@ -60,19 +87,19 @@ export default {
         },
         {
           id: 2,
-          title: "Better",
-          artist: "Kalid",
+          title: "Saturday Nights",
+          artist: "Khalid",
           cover:
             "https://i.scdn.co/image/ab67616d0000485160624c0781fd787c9aa4699c",
           album: "Suncity",
-          duration: "3:49",
+          duration: "3:30",
         },
         {
           id: 3,
           title: "Better",
-          artist: "Kalid",
+          artist: "Khalid",
           cover:
-            "https://i.scdn.co/image/ab67616d0000485160624c0781fd787c9aa4699c",
+            "https://i.scdn.co/image/ab67616d0000485197bbd3ef27fe0b40b36f8002",
           album: "Suncity",
           duration: "3:49",
         },
@@ -107,6 +134,33 @@ export default {
             "https://i.scdn.co/image/ab67616d00001e02e9d11eb596a7a7e426d81635",
         },
       ],
+      topArtists: [
+        {
+          id: 1,
+          image:
+            "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
+          name: "Khalid",
+        },
+        {
+          id: 2,
+          image:
+            "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
+          name: "Khalid",
+        },
+        {
+          id: 3,
+          image:
+            "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
+          name: "Khalid",
+        },
+        {
+          id: 4,
+          image:
+            "https://i.scdn.co/image/ab6761610000f178012b37d6dec8872b18524f78",
+          name: "Khalid",
+        },
+        
+      ],
     };
   },
   computed: {},
@@ -140,5 +194,35 @@ export default {
   .text-h5 {
     color: #595959;
   }
+}
+</style>
+
+<style lang="scss">
+.artists:not(.sm) {
+  .artist {
+    &:nth-child(1) {
+      .artist-card {
+        border-top-left-radius: 15px;
+      }
+    }
+    &:nth-child(2) {
+      .artist-card {
+        border-top-right-radius: 15px;
+      }
+    }
+    &:nth-last-child(2) {
+      .artist-card {
+        border-bottom-left-radius: 15px;
+      }
+    }
+    &:last-child:not(:first-child) {
+      .artist-card {
+        border-bottom-right-radius: 15px;
+      }
+    }
+  }
+}
+.justify-content-end {
+  justify-content: end;
 }
 </style>

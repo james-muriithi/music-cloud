@@ -27,11 +27,11 @@
           <router-link to="/"> {{ song.album }} </router-link>
         </v-col>
 
-        <v-col sm="2" cols="2" class="d-flex align-items-center time">
+        <v-col sm="2" cols="2" class="d-flex align-items-center time pt-6">
           {{ song.duration }}
         </v-col>
 
-        <v-col md="2" cols="3" class="text-right d-flex actions">
+        <v-col md="2" cols="3" class="text-right d-flex actions pt-4">
           <v-btn icon class="like">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .song-card {
-  padding: 3px 10px 3px 3px;
+  padding: 4px 10px 4px 3px;
 
   margin-bottom: 15px;
   border-radius: 3px;
