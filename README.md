@@ -1,4 +1,7 @@
-# music-cloud
+# Music Cloud
+
+## ScreenShots
+<img src="./screenshots/screencapture.png" />
 
 ## Project setup
 ```
