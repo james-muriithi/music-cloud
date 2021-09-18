@@ -5,9 +5,11 @@
         <v-col cols="12" lg="7">
           <div class="text-h5 font-weight-bold">Top Songs</div>
           <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
-            <song-card />
-            <song-card />
-            <song-card />
+            <song-card
+              v-for="song in recentSongs"
+              :key="song.id"
+              :song="song"
+            />
           </div>
         </v-col>
         <v-col cols="12" lg="5">
@@ -43,6 +45,39 @@ import SongCard from "../components/songs/SongCard.vue";
 export default {
   components: { AlbumCard, SongCard },
   name: "Home",
+  data() {
+    return {
+      recentSongs: [
+        {
+          id: 1,
+          title: "8TEEN",
+          artist: "Kalid",
+          cover:
+            "https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577",
+          album: "American Teen",
+          duration: "3:01",
+        },
+        {
+          id: 2,
+          title: "Better",
+          artist: "Kalid",
+          cover:
+            "https://i.scdn.co/image/ab67616d0000485160624c0781fd787c9aa4699c",
+          album: "Suncity",
+          duration: "3:49",
+        },
+        {
+          id: 3,
+          title: "Better",
+          artist: "Kalid",
+          cover:
+            "https://i.scdn.co/image/ab67616d0000485160624c0781fd787c9aa4699c",
+          album: "Suncity",
+          duration: "3:49",
+        },
+      ],
+    };
+  },
   computed: {
     albumCardStyle() {
       return {
@@ -71,6 +106,18 @@ export default {
   // background: var(--v-cardBackground-base);
   padding-left: 4px;
   padding-right: 4px;
+  max-height: 270px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--v-background-base);
+    border-left: none;
+  }
 }
 .text-h5 {
   font-size: 20px !important;

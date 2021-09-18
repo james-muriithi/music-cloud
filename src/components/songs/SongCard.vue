@@ -3,9 +3,9 @@
     <div class="d-flex">
       <div class="song-image">
         <v-img
-          lazy-src="https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577"
+          :lazy-src="song.cover"
           fluid
-          src="https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577"
+          :src="song.cover"
           class="fill-height rounded"
         >
           <div class="play-btn">
@@ -17,18 +17,18 @@
       </div>
       <v-row class="song-details pl-3">
         <v-col cols="6" sm="5">
-          <div class="song-title fill-width">8TEEN</div>
+          <div class="song-title fill-width">{{ song.title }}</div>
           <div class="song-artist">
-            <router-link to="/">Khalid</router-link>
+            <router-link to="/">{{ song.artist }}</router-link>
           </div>
         </v-col>
 
         <v-col md="3" class="text-center album d-none d-sm-flex">
-          <router-link to="/"> American Teen </router-link>
+          <router-link to="/"> {{ song.album }} </router-link>
         </v-col>
 
         <v-col sm="2" cols="2" class="d-flex align-items-center time">
-          3:01
+          {{ song.duration }}
         </v-col>
 
         <v-col md="2" cols="3" class="text-right d-flex actions">
@@ -46,13 +46,19 @@
 <script>
 export default {
   name: "SongCard",
+  props: {
+    song: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .song-card {
-  padding-top: 3px;
-  padding-right: 10px;
+  padding: 3px 10px 3px 3px;
+
   margin-bottom: 15px;
   border-radius: 3px;
   .song-image {
