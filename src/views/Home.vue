@@ -22,14 +22,15 @@
       <div class="text-h5 font-weight-bold">New Albums</div>
       <div class="pt-5 albums">
         <v-row>
-          <v-col cols="12" sm="6" md="4" lg="3">
-            <album-card :background="albumCardStyle" />
-          </v-col>
-          <v-col cols="12" sm="6" md="4" lg="3">
-            <album-card :background="albumCardStyle2" />
-          </v-col>
-          <v-col cols="12" sm="6" md="4" lg="3">
-            <album-card :background="albumCardStyle3" />
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+            v-for="album in topAlbums"
+            :key="album.id"
+          >
+            <album-card :album="album" />
           </v-col>
         </v-row>
       </div>
@@ -76,27 +77,39 @@ export default {
           duration: "3:49",
         },
       ],
+      topAlbums: [
+        {
+          id: 1,
+          title: "Donda",
+          artist: "Kanye",
+          cover:
+            "https://i.scdn.co/image/ab67616d00001e02e9d11eb596a7a7e426d81635",
+        },
+        {
+          id: 2,
+          title: "Donda",
+          artist: "Kanye",
+          cover:
+            "https://i.scdn.co/image/ab67616d00001e0241e31d6ea1d493dd77933ee5",
+        },
+        {
+          id: 3,
+          title: "Donda",
+          artist: "Kanye",
+          cover:
+            "https://i.scdn.co/image/ab67616d00001e02c2bd783533a07368136793a8",
+        },
+        {
+          id: 4,
+          title: "Donda",
+          artist: "Kanye",
+          cover:
+            "https://i.scdn.co/image/ab67616d00001e02e9d11eb596a7a7e426d81635",
+        },
+      ],
     };
   },
-  computed: {
-    albumCardStyle() {
-      return {
-        background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), url("https://i.scdn.co/image/ab67616d00001e02e9d11eb596a7a7e426d81635") center center / cover no-repeat`,
-        backgroundRepeat: "no-repeat",
-        backgroundCenter: "center",
-      };
-    },
-    albumCardStyle2() {
-      return {
-        background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), url("https://i.scdn.co/image/ab67616d00001e0241e31d6ea1d493dd77933ee5") center center / cover no-repeat`,
-      };
-    },
-    albumCardStyle3() {
-      return {
-        background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), url("https://i.scdn.co/image/ab67616d00001e02c2bd783533a07368136793a8") center center / cover no-repeat`,
-      };
-    },
-  },
+  computed: {},
 };
 </script>
 
