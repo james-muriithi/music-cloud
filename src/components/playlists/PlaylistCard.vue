@@ -9,7 +9,7 @@
           <div class="album-title pl-2 pr-1 pt-0 white--text">
             {{ playlist.title }}
           </div>
-          <div class="artist text-caption pl-2">{{ playlist.artists }}</div>
+          <div class="artist text-caption pl-2">{{ description }}</div>
         </div>
       </div>
     </div>
@@ -25,14 +25,28 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      height: 350,
+      width: 350,
+    };
+  },
   computed: {
-    link(){
+    cover() {
+      return this.playlist.cover
+        .replace("{w}", this.width)
+        .replace("{h}", this.height);
+    },
+    link() {
       return "/";
+    },
+    description() {
+      return this.playlist?.description?.short || this.playlist.artists;
     },
     background() {
       return {
         background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
-          url("${this.playlist.cover}") center center / cover no-repeat`,
+          url("${this.cover}") center center / cover no-repeat`,
         backgroundRepeat: "no-repeat",
         backgroundCenter: "center",
       };
@@ -46,9 +60,9 @@ export default {
   border-radius: 15px;
   background: var(--v-cardBackground-base);
   position: relative;
-//   min-height: 180px;
+  //   min-height: 180px;
   min-height: 250px;
-  
+
   .playlist-details {
     position: absolute;
     bottom: 8px;
@@ -69,7 +83,6 @@ export default {
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
-        
       }
       .artist {
         color: rgb(179, 179, 179);

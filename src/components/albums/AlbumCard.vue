@@ -6,10 +6,15 @@
           <v-icon>mdi-play</v-icon>
         </v-btn>
         <div class="details">
-          <div class="album-title pl-2 pr-1 pt-0 white--text">
+          <div
+            class="album-title pl-2 pr-1 pt-0 white--text"
+            :title="album.title"
+          >
             {{ album.title }}
           </div>
-          <div class="artist text-caption pl-2">{{ album.artist }}</div>
+          <div class="artist text-caption pl-2" :title="album.artist">
+            {{ album.artist }}
+          </div>
         </div>
       </div>
     </div>
@@ -25,14 +30,25 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      height: 250,
+      width: 250,
+    };
+  },
   computed: {
-    link(){
+    cover() {
+      return this.album.cover
+        .replace("{w}", this.width)
+        .replace("{h}", this.height);
+    },
+    link() {
       return "/";
     },
     background() {
       return {
         background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
-          url("${this.album.cover}") center center / cover no-repeat`,
+          url("${this.cover}") center center / cover no-repeat`,
         backgroundRepeat: "no-repeat",
         backgroundCenter: "center",
       };
@@ -64,18 +80,17 @@ export default {
       overflow: hidden;
 
       .album-title {
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
-        
       }
       .artist {
         color: rgb(179, 179, 179);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 10px;
+        line-height: 13px;
       }
     }
   }
