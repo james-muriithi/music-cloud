@@ -70,7 +70,7 @@ export default {
     width: 93%;
     .play-button {
       font-size: 26px;
-      background: #772bfb;
+      background: #1db954;
       height: 40px;
       width: 40px;
     }

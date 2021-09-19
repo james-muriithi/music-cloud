@@ -1,6 +1,9 @@
 <template>
   <router-link :to="link" class="fill-height">
     <div class="album-card elevation-2" :style="background">
+      <div class="album-tracks white--text">
+        {{album.track_count}} tracks
+      </div>
       <div class="album-details d-flex">
         <v-btn class="play-button white--text" fab icon>
           <v-icon>mdi-play</v-icon>
@@ -47,7 +50,7 @@ export default {
     },
     background() {
       return {
-        background: `linear-gradient(180deg,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
+        background: `linear-gradient(180deg, rgba(0,0,0,0.8) 1%,rgba(0,0,0,.8) 5%,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
           url("${this.cover}") center center / cover no-repeat`,
         backgroundRepeat: "no-repeat",
         backgroundCenter: "center",
@@ -64,6 +67,13 @@ export default {
   position: relative;
   min-height: 190px;
   // min-height: 250px;
+  .album-tracks {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    width: 93%;
+    font-size: 12px;
+  }
   .album-details {
     position: absolute;
     bottom: 8px;

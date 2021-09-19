@@ -210,14 +210,23 @@ export default {
         border-top-right-radius: 15px;
       }
     }
-    &:nth-last-child(2) {
+
+    //
+    &:nth-last-child(2):not(:nth-child(even)) {
       .artist-card {
         border-bottom-left-radius: 15px;
       }
     }
-    &:last-child:not(:first-child) {
+    &:last-child:not(:nth-child(odd)) {
       .artist-card {
         border-bottom-right-radius: 15px;
+      }
+    }
+
+    //
+    &:last-child:nth-child(odd) {
+      .artist-card {
+        border-bottom-left-radius: 15px;
       }
     }
   }
