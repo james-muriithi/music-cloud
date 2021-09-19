@@ -11,7 +11,7 @@
         </v-img>
       </div>
       <v-row class="song-details pl-3">
-        <v-col cols="6" sm="5">
+        <v-col cols="7" sm="5">
           <div class="song-title fill-width">{{ song.title }}</div>
           <div class="song-artist">
             <router-link to="/">{{ song.artist }}</router-link>
@@ -26,11 +26,11 @@
           {{ duration }}
         </v-col>
 
-        <v-col sm="2" cols="3" class="text-right d-flex actions pt-4">
-          <v-btn icon class="like">
+        <v-col sm="2" cols="3" class="text-right d-flex actions pt-4 pr-0 pr-sm-3">
+          <v-btn icon class="like d-none d-sm-flex">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
-          <v-btn icon>
+          <v-btn icon class="">
             <v-icon>mdi-dots-horizontal</v-icon>
           </v-btn>
         </v-col>
@@ -69,6 +69,10 @@ export default {
 <style lang="scss" scoped>
 .song-card {
   padding: 4px 10px 4px 3px;
+
+  @media (max-width: 576px) {
+    padding-right: 4px;
+  }
 
   margin-bottom: 15px;
   border-radius: 3px;

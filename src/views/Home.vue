@@ -4,7 +4,7 @@
       <v-row class="mx-0">
         <v-col cols="12" lg="8" class="px-md-3 px-0">
           <div class="text-h5 font-weight-bold">Top Songs</div>
-          <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
+          <div class="pa-md-2 pa-0 mt-3 songs elevation-0">
             <span v-if="isLoading">
               <song-skeleton v-for="n in 6" :key="n" />
             </span>
@@ -175,6 +175,7 @@ export default {
   padding-right: 4px;
   max-height: 270px;
   overflow-y: auto;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 6px;
   }
