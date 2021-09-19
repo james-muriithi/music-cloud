@@ -3,6 +3,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
+import mixin from './mixin'
 
 // components
 import SideNav from './components/UI/SideNav';
@@ -12,6 +13,7 @@ Vue.config.productionTip = false;
 
 Vue.component('side-nav', SideNav);
 Vue.component('app-bar', AppBar);
+Vue.mixin(mixin);
 
 new Vue({
     vuetify,

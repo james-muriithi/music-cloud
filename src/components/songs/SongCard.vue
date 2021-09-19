@@ -2,12 +2,7 @@
   <div class="song-card">
     <div class="d-flex">
       <div class="song-image">
-        <v-img
-          :lazy-src="song.cover"
-          fluid
-          :src="song.cover"
-          class="fill-height rounded"
-        >
+        <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
           <div class="play-btn">
             <v-btn icon fab x-small>
               <v-icon>mdi-play</v-icon>
@@ -28,10 +23,10 @@
         </v-col>
 
         <v-col sm="2" cols="2" class="d-flex align-items-center time pt-6">
-          {{ song.duration }}
+          {{ duration }}
         </v-col>
 
-        <v-col sm="2"  cols="3" class="text-right d-flex actions pt-4">
+        <v-col sm="2" cols="3" class="text-right d-flex actions pt-4">
           <v-btn icon class="like">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
@@ -50,6 +45,22 @@ export default {
     song: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      height: 200,
+      width: 200,
+    };
+  },
+  computed: {
+    cover() {
+      return this.song.cover
+        .replace("{w}", this.width)
+        .replace("{h}", this.height);
+    },
+    duration() {
+      return this.msToTime(this.song.duration);
     },
   },
 };
@@ -93,10 +104,16 @@ export default {
       padding-top: 20px;
     }
     .album {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       a {
         font-size: 14px;
         color: rgb(179, 179, 179);
         text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-overflow: ellipsis;
         &:hover {
           text-decoration: underline;
         }

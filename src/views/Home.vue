@@ -6,7 +6,7 @@
           <div class="text-h5 font-weight-bold">Top Songs</div>
           <div class="pa-md-2 pa-1 mt-3 songs elevation-0">
             <span v-if="isLoading">
-              <song-skeleton v-for="n in 3" :key="n" />
+              <song-skeleton v-for="n in 6" :key="n" />
             </span>
             <span class="" v-else>
               <song-card
@@ -129,7 +129,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { fetchBrowseData } from "../helpers/apple-music";
 import AlbumCard from "../components/albums/AlbumCard.vue";
 import ArtistCard from "../components/artists/ArtistCard.vue";
 import PlaylistCard from "../components/playlists/PlaylistCard.vue";
@@ -162,7 +161,7 @@ export default {
   },
   async created() {
     this.isLoading = true;
-    await fetchBrowseData();
+    await this.$store.dispatch("fetchBrowseData", { limit: 40 });
     this.isLoading = false;
   },
 };
