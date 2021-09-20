@@ -21,7 +21,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="6" sm="5" class="player-controls">
+        <v-col sm="5" class="player-controls d-none d-sm-inline-block">
           <div class="">
             <div class="controls d-flex justify-content-center">
               <v-btn icon>
@@ -55,7 +55,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="3" class="d-none d-sm-flex"> </v-col>
+        <v-col cols="6" sm="3" class="d-none d-sm-flex"> </v-col>
       </v-row>
     </v-container>
   </div>
@@ -93,8 +93,8 @@ export default {
   z-index: 10;
   background: var(--v-background-base);
   .song-image {
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
   }
   .song-details {
     white-space: nowrap;
@@ -122,12 +122,13 @@ export default {
     }
   }
   .player-controls {
+      margin-top: -4px;
     .controls {
       justify-content: center;
       button {
         margin-right: 8px;
-        // height: 33px;
-        // width: 33px;
+        height: 34px;
+        width: 34px;
       }
       .pause-btn {
           transition: all 0.3s;
@@ -161,14 +162,14 @@ export default {
     font-size: 13px;
   }
   .v-input__control {
-    height: 30px !important;
+    height: 20px !important;
   }
 
   .v-messages {
     display: none;
   }
   .v-input__slot {
-    margin-top: 4px;
+    margin-top: 0px;
     margin-bottom: 0px !important;
   }
 }
