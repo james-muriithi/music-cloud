@@ -14,15 +14,13 @@ export default {
 
         let data;
 
-        if (savedData && savedData.expiry_date > 1632087860490) {
+        if (savedData && savedData.expiry_date > Date.now()) {
             data = savedData;
         } else {
             data = await fetchBrowseData(limit);
             data.expiry_date = Date.now() + 3600000;
             saveToLocalStorage('browse-data', JSON.stringify(data));
         }
-
-
 
         const songs = extractSongs(data.songs[0].data);
         const albums = extractAlbums(data.albums[0].data, 12);
