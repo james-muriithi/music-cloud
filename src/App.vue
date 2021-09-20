@@ -5,13 +5,16 @@
       <side-nav />
       <v-main>
         <router-view />
+        <bottom-player />
       </v-main>
     </v-app>
   </div>
 </template>
 
 <script>
+import BottomPlayer from './components/player/BottomPlayer.vue';
 export default {
+  components: { BottomPlayer },
   name: "App",
   data() {
     return {

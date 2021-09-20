@@ -168,6 +168,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home{
+  margin-bottom: 85px;
+}
 .songs {
   border-radius: 10px;
   // background: var(--v-cardBackground-base);
