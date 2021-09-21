@@ -89,4 +89,7 @@ export default {
 .w-100{
   width: 100%;
 }
+.align-items-center{
+  align-items: center;
+}
 </style>

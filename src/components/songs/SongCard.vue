@@ -87,6 +87,8 @@ export default {
       top: 8px;
       left: 8px;
       button {
+        height: 30px;
+        width: 30px;
         font-size: 16px;
         background: #772bfb;
         color: #ffffff;

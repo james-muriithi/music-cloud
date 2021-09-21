@@ -55,7 +55,12 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="6" sm="3" class="d-none d-sm-flex"> </v-col>
+        <v-col cols="6" sm="3" class="d-none d-sm-flex align-items-center">
+          <div class="text-center w-100 volume">
+            <v-slider prepend-icon="mdi-volume-high" class="align-center">
+            </v-slider>
+          </div>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -122,7 +127,7 @@ export default {
     }
   }
   .player-controls {
-      margin-top: -4px;
+    margin-top: -4px;
     .controls {
       justify-content: center;
       button {
@@ -131,7 +136,7 @@ export default {
         width: 34px;
       }
       .pause-btn {
-          transition: all 0.3s;
+        transition: all 0.3s;
         i {
           font-size: 22px;
         }
@@ -157,6 +162,7 @@ export default {
 </style>
 
 <style lang="scss">
+.volume,
 .progress {
   .v-label {
     font-size: 13px;
@@ -171,6 +177,11 @@ export default {
   .v-input__slot {
     margin-top: 0px;
     margin-bottom: 0px !important;
+  }
+}
+.volume {
+  .v-input__prepend-outer{
+    margin-top: 18px;
   }
 }
 </style>
