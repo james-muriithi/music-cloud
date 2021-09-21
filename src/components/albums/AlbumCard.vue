@@ -1,9 +1,7 @@
 <template>
   <router-link :to="link" class="fill-height">
     <div class="album-card elevation-2" :style="background">
-      <div class="album-tracks white--text">
-        {{album.track_count}} tracks
-      </div>
+      <div class="album-tracks white--text">{{ album.track_count }} tracks</div>
       <div class="album-details d-flex">
         <v-btn class="play-button white--text" fab icon>
           <v-icon>mdi-play</v-icon>
@@ -67,6 +65,14 @@ export default {
   position: relative;
   min-height: 190px;
   // min-height: 250px;
+  &:hover {
+    .play-button {
+      transform: translateY(0) !important;
+      filter: alpha(opacity=100) !important;
+      opacity: 1 !important;
+      visibility: initial !important;
+    }
+  }
   .album-tracks {
     position: absolute;
     top: 8px;
@@ -77,13 +83,19 @@ export default {
   .album-details {
     position: absolute;
     bottom: 8px;
-    left: 10px;
+    left: 5px;
     width: 93%;
     .play-button {
       font-size: 26px;
       background: #772bfb;
-      height: 35px;
-      width: 35px;
+      height: 33px;
+      width: 33px;
+
+      transition: all 0.3s ease 0.25s;
+      transform: translateY(30px);
+      filter: alpha(opacity=0);
+      opacity: 0;
+      visibility: hidden;
     }
     .details {
       white-space: nowrap;

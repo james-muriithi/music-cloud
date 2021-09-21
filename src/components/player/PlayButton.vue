@@ -1,12 +1,34 @@
 <template>
-  <v-btn icon class="pause-btn">
-    <v-icon>mdi-pause</v-icon>
+  <v-btn icon class="pause-btn" @click="togglePlay">
+    <v-icon>{{ icon }}</v-icon>
   </v-btn>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "PlayButton",
+  props: {
+    playing: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+    icon() {
+      return this.isPlaying ? "mdi-pause" : "mdi-play";
+    },
+  },
+  methods: {
+    togglePlay() {
+      if (this.currentPlaying.title && this.currentPlaying.artist) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+      }
+    },
+  },
 };
 </script>
 
@@ -23,11 +45,11 @@ button {
   }
   &.theme--dark {
     background: #fff;
-    color: #181818;
+    color: #181818 !important;
   }
   &.theme--light {
     background: #181818;
-    color: #fff;
+    color: #fff !important;
   }
 }
 </style>

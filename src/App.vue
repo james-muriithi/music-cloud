@@ -8,13 +8,15 @@
         <bottom-player />
       </v-main>
     </v-app>
+    <audio-player />
   </div>
 </template>
 
 <script>
+import AudioPlayer from './components/player/AudioPlayer.vue';
 import BottomPlayer from './components/player/BottomPlayer.vue';
 export default {
-  components: { BottomPlayer },
+  components: { BottomPlayer, AudioPlayer },
   name: "App",
   data() {
     return {

@@ -3,7 +3,7 @@
     <div class="d-flex">
       <div class="song-image">
         <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
-          <div class="play-btn">
+          <div class="play-btn" @click="play">
             <v-btn icon fab x-small>
               <v-icon>mdi-play</v-icon>
             </v-btn>
@@ -26,7 +26,11 @@
           {{ duration }}
         </v-col>
 
-        <v-col sm="2" cols="3" class="text-right d-flex actions pt-4 pr-0 pr-sm-3">
+        <v-col
+          sm="2"
+          cols="3"
+          class="text-right d-flex actions pt-4 pr-0 pr-sm-3"
+        >
           <v-btn icon class="like d-none d-sm-flex">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
@@ -61,6 +65,11 @@ export default {
     },
     duration() {
       return this.msToTime(this.song.duration);
+    },
+  },
+  methods: {
+    play() {
+      this.$store.dispatch("player/play", { song: this.song });
     },
   },
 };

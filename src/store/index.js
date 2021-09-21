@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import sidebar from "./modules/sidebar";
 import music from "./modules/music";
+import player from "./modules/player";
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     actions: {},
     modules: {
         sidebar,
-        music
+        music,
+        player
     }
 })

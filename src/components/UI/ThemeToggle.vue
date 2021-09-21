@@ -6,7 +6,7 @@
           <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
         </v-btn>
       </template>
-      <span>Dark Mode On</span>
+      <span class="caption">Dark Mode On</span>
     </v-tooltip>
 
     <v-tooltip v-else bottom data-app>
@@ -15,7 +15,7 @@
           <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
         </v-btn>
       </template>
-      <span>Dark Mode Off</span>
+      <span class="caption">Dark Mode Off</span>
     </v-tooltip>
   </div>
 </template>

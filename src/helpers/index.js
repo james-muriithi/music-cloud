@@ -63,4 +63,12 @@ function extractPlaylists(playlists, limit = 4) {
     return formattedPlaylists.slice(0, limit);
 }
 
-export { saveToLocalStorage, getFromLocalStorage, extractSongs, extractAlbums, extractPlaylists };
+function getSafe(fn, defaultVal = null) {
+    try {
+        return fn();
+    } catch (_) {
+        return defaultVal;
+    }
+}
+
+export { saveToLocalStorage, getFromLocalStorage, extractSongs, extractAlbums, extractPlaylists, getSafe };
