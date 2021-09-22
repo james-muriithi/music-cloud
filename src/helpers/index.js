@@ -71,4 +71,17 @@ function getSafe(fn, defaultVal = null) {
     }
 }
 
-export { saveToLocalStorage, getFromLocalStorage, extractSongs, extractAlbums, extractPlaylists, getSafe };
+function fillImageDimensions(url, width, height) {
+    return url.replace("{w}", width)
+        .replace("{h}", height);
+}
+
+export {
+    saveToLocalStorage,
+    getFromLocalStorage,
+    extractSongs,
+    extractAlbums,
+    extractPlaylists,
+    getSafe,
+    fillImageDimensions
+};

@@ -2,14 +2,14 @@
   <div class="bottom-player">
     <v-container fluid>
       <v-row class="py-0">
-        <v-col cols="9" sm="5" class="pr-0">
+        <v-col cols="10" sm="5" class="pr-0">
           <song-info />
         </v-col>
         <v-col sm="5" lg="5" class="d-none d-sm-inline-block">
           <player-controls />
         </v-col>
         <v-col
-          cols="3"
+          cols="2"
           sm="2"
           class="d-flex align-items-center justify-content-end pl-0 pl-sm-3"
         >

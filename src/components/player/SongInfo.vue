@@ -8,9 +8,9 @@
       <v-row class="mr-0">
         <v-col cols="9" class="pr-0">
           <div class="w-100">
-            <div class="song-title fill-width">Better Better Better Better</div>
+            <div class="song-title fill-width">{{ currentPlaying.title }}</div>
             <div class="song-artist">
-              <router-link to="/">Khalid</router-link>
+              <router-link to="/">{{ currentPlaying.artist }}</router-link>
             </div>
           </div>
         </v-col>
@@ -25,12 +25,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { fillImageDimensions } from "../../helpers";
 export default {
   name: "SongInfo",
   computed: {
     cover() {
-      return "https://is2-ssl.mzstatic.com/image/thumb/Music115/v4/bb/1e/c4/bb1ec461-1660-7afa-bc4f-f11a0dca6ac9/075679768889.jpg/200x200bb.jpeg";
+      return fillImageDimensions(this.currentPlaying.cover, 200, 200);
     },
+    ...mapGetters("player", ["currentPlaying"]),
   },
 };
 </script>
