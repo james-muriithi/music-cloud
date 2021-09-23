@@ -8,7 +8,7 @@
       <v-btn icon>
         <v-icon>mdi-skip-previous</v-icon>
       </v-btn>
-      <play-button />
+      <play-button @play="togglePlay" :playing="isPlaying" />
       <v-btn icon>
         <v-icon>mdi-skip-next</v-icon>
       </v-btn>
@@ -22,11 +22,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import PlayButton from "./PlayButton.vue";
 import SongProgress from "./SongProgress.vue";
 export default {
   components: { SongProgress, PlayButton },
   name: "PlayerControls",
+  computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+  },
+  methods: {
+    togglePlay() {
+      if (this.currentPlaying.title && this.currentPlaying.artist) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+      }
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div class="progress">
-    <v-slider :label="songCurrentTime" class="align-center">
+    <v-slider v-model="sliderProgress" :label="songCurrentTime" class="align-center">
       <template v-slot:append>
         <v-layout class="alignThis">
-          <div class="align-center">{{totalTime}}</div>
+          <div class="align-center">{{ totalTime }}</div>
         </v-layout>
       </template>
     </v-slider>
@@ -11,18 +11,30 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "SongProgress",
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
     totalTime() {
-      return this.msToTime(this.currentPlaying.playbackTimeInfo.songDuration)
+      return this.msToTime(this.currentPlaying.playbackTimeInfo.songDuration);
     },
-    songCurrentTime(){
-      return this.msToTime(this.currentPlaying.playbackTimeInfo.currentTime)
-    }
-  }
+    songCurrentTime() {
+      return this.msToTime(this.currentPlaying.playbackTimeInfo.currentTime);
+    },
+    sliderProgress: {
+      get() {
+        return Math.ceil(
+          (this.currentPlaying.playbackTimeInfo.currentTime /
+            this.currentPlaying.playbackTimeInfo.songDuration) *
+            100
+        );
+      },
+      set(){
+
+      }
+    },
+  },
 };
 </script>
 

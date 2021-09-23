@@ -3,11 +3,19 @@
     <div class="d-flex">
       <div class="song-image">
         <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
-          <div class="play-btn" @click="play">
+          <!-- <div class="play-btn" @click="play">
             <v-btn icon fab x-small>
               <v-icon>mdi-play</v-icon>
             </v-btn>
-          </div>
+          </div> -->
+          <play-button
+            class="play-btn"
+            :height="30"
+            :width="30"
+            :colors="playBtnColors"
+            @play="play"
+            :playing="songIsPlaying"
+          />
         </v-img>
       </div>
       <v-row class="song-details pl-3">
@@ -43,7 +51,10 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+import PlayButton from "../player/PlayButton.vue";
 export default {
+  components: { PlayButton },
   name: "SongCard",
   props: {
     song: {
@@ -58,6 +69,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
     cover() {
       return this.song.cover
         .replace("{w}", this.width)
@@ -66,9 +78,30 @@ export default {
     duration() {
       return this.msToTime(this.song.duration);
     },
+    playBtnColors() {
+      return {
+        dark: {
+          color: "#fff",
+          background: "#772bfb",
+        },
+        light: {
+          color: "#fff",
+          background: "#772bfb",
+        },
+      };
+    },
+    songIsPlaying() {
+      return this.isPlaying && this.song.id == this.currentPlaying.id;
+    },
   },
   methods: {
     play() {
+      if (this.song.id == this.currentPlaying.id) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+        return;
+      }
       this.$store.dispatch("player/play", { song: this.song });
     },
   },

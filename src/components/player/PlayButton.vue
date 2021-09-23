@@ -1,11 +1,10 @@
 <template>
-  <v-btn icon class="pause-btn" @click="togglePlay">
+  <v-btn icon class="pause-btn" :style="cssProps" @click="togglePlay">
     <v-icon>{{ icon }}</v-icon>
   </v-btn>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "PlayButton",
   props: {
@@ -13,20 +12,48 @@ export default {
       type: Boolean,
       default: false,
     },
+    width: {
+      type: Number,
+      default: 34,
+    },
+    height: {
+      type: Number,
+      default: 34,
+    },
+    colors: {
+      type: Object,
+      default: function () {
+        return {
+          dark: {
+            color: "#181818",
+            background: "#fff",
+          },
+          light: {
+            color: "#fff",
+            background: "#181818",
+          },
+        };
+      },
+    },
   },
   computed: {
-    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
     icon() {
-      return this.isPlaying ? "mdi-pause" : "mdi-play";
+      return this.playing ? "mdi-pause" : "mdi-play";
+    },
+    cssProps() {
+      return {
+        "--width": this.width + "px",
+        "--height": this.height + "px",
+        "--dark-bg": this.colors.dark.background,
+        "--dark-color": this.colors.dark.color,
+        "--light-bg": this.colors.light.background,
+        "--light-color": this.colors.light.color,
+      };
     },
   },
   methods: {
     togglePlay() {
-      if (this.currentPlaying.title && this.currentPlaying.artist) {
-        this.$store.dispatch("player/setIsPlaying", {
-          isPlaying: !this.isPlaying,
-        });
-      }
+      this.$emit("play");
     },
   },
 };
@@ -35,8 +62,8 @@ export default {
 <style lang="scss" scoped>
 button {
   margin-right: 8px;
-  height: 34px;
-  width: 34px;
+  height: var(--height);
+  width: var(--width);
 }
 .pause-btn {
   transition: all 0.3s;
@@ -44,12 +71,12 @@ button {
     font-size: 22px;
   }
   &.theme--dark {
-    background: #fff;
-    color: #181818 !important;
+    background: var(--dark-bg);
+    color: var(--dark-color) !important;
   }
   &.theme--light {
-    background: #181818;
-    color: #fff !important;
+    background: var(--light-bg);
+    color: var(--light-color) !important;
   }
 }
 </style>
