@@ -1,6 +1,11 @@
 <template>
   <div class="progress">
-    <v-slider v-model="sliderProgress" :label="songCurrentTime" class="align-center">
+    <v-slider
+      v-model="sliderProgress"
+      :label="songCurrentTime"
+      class="align-center"
+      :readonly="!songData"
+    >
       <template v-slot:append>
         <v-layout class="alignThis">
           <div class="align-center">{{ totalTime }}</div>
@@ -19,6 +24,13 @@ export default {
     totalTime() {
       return this.msToTime(this.currentPlaying.playbackTimeInfo.songDuration);
     },
+    songData() {
+      return (
+        this.currentPlaying.artist &&
+        this.currentPlaying.id &&
+        this.currentPlaying.title
+      );
+    },
     songCurrentTime() {
       return this.msToTime(this.currentPlaying.playbackTimeInfo.currentTime);
     },
@@ -30,9 +42,14 @@ export default {
             100
         );
       },
-      set(){
-
-      }
+      set(value) {
+        this.$store.dispatch("player/updateSongCurrentTime", {
+          currentTime:
+            (value * this.currentPlaying.playbackTimeInfo.songDuration) / 100,
+        });
+        
+        this.$store.dispatch("player/setTimeChangedByUser", true);
+      },
     },
   },
 };

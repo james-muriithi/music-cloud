@@ -20,9 +20,12 @@
       </div>
       <v-row class="song-details pl-3">
         <v-col cols="7" sm="5">
-          <div class="song-title fill-width">{{ song.title }}</div>
-          <div class="song-artist">
+          <div :class="`song-title fill-width${currentSong ? ' playing': ''}`">{{ song.title }}</div>
+          <div class="song-artist d-flex align-items-center">
             <router-link to="/">{{ song.artist }}</router-link>
+            <div class="ml-3" v-if="songIsPlaying">
+              <img :src="require('@/assets/equaliser-animated-green.gif')" alt="playing" height="10">
+            </div>
           </div>
         </v-col>
 
@@ -90,8 +93,11 @@ export default {
         },
       };
     },
+    currentSong() {
+      return this.song.id == this.currentPlaying.id;
+    },
     songIsPlaying() {
-      return this.isPlaying && this.song.id == this.currentPlaying.id;
+      return this.isPlaying && this.currentSong;
     },
   },
   methods: {
@@ -145,6 +151,9 @@ export default {
       font-weight: 450;
       overflow: hidden;
       text-overflow: ellipsis;
+      &.playing{
+        color: #1db954;
+      }
     }
     .time {
       font-size: 13px;
