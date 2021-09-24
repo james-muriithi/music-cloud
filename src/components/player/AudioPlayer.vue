@@ -23,7 +23,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("player", ["currentPlaying", "isPlaying"]),
+    ...mapGetters("player", ["currentPlaying", "isPlaying", "volume"]),
     songData() {
       return (
         this.currentPlaying.artist &&
@@ -45,7 +45,13 @@ export default {
         );
 
         await this.$refs.music_player.play();
-        this.$store.dispatch('player/updateSongDuration', {duration: this.$refs.music_player.duration * 1000})
+        this.$store.dispatch("player/updateSongDuration", {
+          duration: this.$refs.music_player.duration * 1000,
+        });
+        
+        this.$store.dispatch("player/setVolume", {
+          volume: this.$refs.music_player.volume * 100,
+        });
       }
     },
     isPlaying(newValue) {
@@ -55,19 +61,21 @@ export default {
         this.$refs.music_player.play();
       }
     },
+    volume(newValue) {
+      this.$refs.music_player.volume = newValue / 100;
+    },
   },
   methods: {
     pause() {
       this.$store.dispatch("player/setIsPlaying", {
-          isPlaying: false,
-        });
+        isPlaying: false,
+      });
     },
-    updateTime(){
-      // console.log(this.$refs.music_player.currentTime);
+    updateTime() {
       this.$store.dispatch("player/updateSongCurrentTime", {
-          currentTime: this.$refs.music_player.currentTime * 1000,
-        });
-    }
+        currentTime: this.$refs.music_player.currentTime * 1000,
+      });
+    },
   },
 };
 </script>

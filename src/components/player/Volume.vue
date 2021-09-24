@@ -12,19 +12,16 @@
 <script>
 export default {
   name: "Volume",
-  props: {
-    value: {
-      type: Number,
-      default: 100,
-    },
-  },
+  props: {},
   computed: {
     volume: {
       get() {
-        return this.value;
+        return this.$store.getters['player/volume'];
       },
       set(value) {
-        console.log(value);
+        this.$store.dispatch("player/setVolume", {
+          volume: value,
+        });
       },
     },
   },
