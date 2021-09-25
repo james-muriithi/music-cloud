@@ -10,8 +10,17 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "AudioPlayer",
+  metaInfo() {
+    const title = this.title
+    return {
+      titleTemplate: () => (
+        `${title}`
+      )
+    }
+  },
   computed: {
     ...mapGetters("player", [
       "currentPlaying",
@@ -26,6 +35,11 @@ export default {
         this.currentPlaying.id &&
         this.currentPlaying.title
       );
+    },
+    title() {
+      return this.isPlaying
+        ? `${this.currentPlaying.title} . ${this.currentPlaying.artist}`
+        : "Music Cloud - Vue Music Player";
     },
   },
   watch: {
