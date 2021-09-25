@@ -14,12 +14,10 @@ import { mapGetters } from "vuex";
 export default {
   name: "AudioPlayer",
   metaInfo() {
-    const title = this.title
+    const title = this.title;
     return {
-      titleTemplate: () => (
-        `${title}`
-      )
-    }
+      titleTemplate: () => `${title}`,
+    };
   },
   computed: {
     ...mapGetters("player", [
@@ -90,9 +88,12 @@ export default {
       this.$refs.music_player.volume = newValue / 100;
     },
     currentTime() {
+      // if time was changed by user change audio element time
       if (this.timeChangedByUser) {
         this.$refs.music_player.currentTime = this.currentTime / 1000;
         this.$store.dispatch("player/setTimeChangedByUser", false);
+        // if song had ended start playing
+        
       }
     },
   },

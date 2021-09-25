@@ -11,10 +11,10 @@
         <v-col
           cols="2"
           sm="2"
-          class="d-flex align-items-center justify-content-end pl-0 pl-sm-3"
+          class="d-flex align-items-center justify-content-end pl-0 pr-1 pl-sm-3"
         >
           <volume class="d-none d-sm-inline-block" />
-          <play-button class="d-inline-lock d-sm-none" />
+          <play-button class="d-inline-lock d-sm-none" @play="togglePlay" :playing="isPlaying" />
         </v-col>
       </v-row>
     </v-container>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import PlayButton from "./PlayButton.vue";
 import PlayerControls from "./PlayerControls.vue";
 import SongInfo from "./SongInfo.vue";
@@ -29,6 +30,18 @@ import Volume from "./Volume.vue";
 export default {
   components: { Volume, PlayerControls, PlayButton, SongInfo },
   name: "BottomPlayer",
+  computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+  },
+  methods: {
+    togglePlay() {
+      if (this.currentPlaying.title && this.currentPlaying.artist) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+      }
+    },
+  },
 };
 </script>
 
