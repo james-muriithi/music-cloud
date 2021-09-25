@@ -4,8 +4,6 @@
     id="music-palyer"
     preload="metadata"
     ref="music_player"
-    :src="src"
-    :title="title"
     @timeupdate="updateTime"
   ></audio>
 </template>
@@ -14,27 +12,19 @@
 import { mapGetters } from "vuex";
 export default {
   name: "AudioPlayer",
-  props: {
-    src: {
-      type: String,
-    },
-    title: {
-      type: String,
-    },
-  },
   computed: {
     ...mapGetters("player", [
       "currentPlaying",
       "isPlaying",
       "volume",
+      "currentTime",
       "timeChangedByUser",
-      "currentTime"
     ]),
     songData() {
       return (
-        this.currentPlaying.artist &&
-        this.currentPlaying.id &&
-        this.currentPlaying.title
+        !!this.currentPlaying.artist &&
+        !!this.currentPlaying.id &&
+        !!this.currentPlaying.title
       );
     },
   },
@@ -64,6 +54,21 @@ export default {
       if (!newValue) {
         this.$refs.music_player.pause();
       } else {
+        const songNotLoaded =
+          (!this.$refs.music_player.getAttribute("src") ||
+            !this.$refs.music_player.getAttribute("title")) &&
+          this.songData;
+
+        if (songNotLoaded) {
+          this.$refs.music_player.setAttribute(
+            "src",
+            this.currentPlaying.preview_url
+          );
+          this.$refs.music_player.setAttribute(
+            "title",
+            this.currentPlaying.title
+          );
+        }
         this.$refs.music_player.play();
       }
     },
