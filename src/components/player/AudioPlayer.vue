@@ -22,9 +22,9 @@ export default {
     ]),
     songData() {
       return (
-        !!this.currentPlaying.artist &&
-        !!this.currentPlaying.id &&
-        !!this.currentPlaying.title
+        this.currentPlaying.artist &&
+        this.currentPlaying.id &&
+        this.currentPlaying.title
       );
     },
   },
@@ -75,10 +75,9 @@ export default {
     volume(newValue) {
       this.$refs.music_player.volume = newValue / 100;
     },
-    timeChangedByUser(newValue) {
-      console.log(newValue);
-      if (newValue) {
-        // this.$refs.music_player.currentTime = this.currentTime;
+    currentTime() {
+      if (this.timeChangedByUser) {
+        this.$refs.music_player.currentTime = this.currentTime / 1000;
         this.$store.dispatch("player/setTimeChangedByUser", false);
       }
     },

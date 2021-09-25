@@ -1,4 +1,5 @@
 import { getSafe } from "../../helpers";
+import { addSongMetaData } from "../../helpers/media-session";
 
 const defaultCover =
     "https://is1-ssl.mzstatic.com/image/thumb/Features127/v4/75/f9/6f/75f96fa5-99ca-0854-3aae-8f76f5cb7fb5/source/100x100bb.jpeg";
@@ -92,8 +93,10 @@ export default {
             commit("setIsPlaying", { isPlaying });
         },
         async play({ commit }, { song }) {
-            commit("setIsPlaying", { isPlaying: true });
-            commit("setCurrentlyPlaying", { currentlyPlaying: song });
+            await commit("setIsPlaying", { isPlaying: false });
+            await commit("setCurrentlyPlaying", { currentlyPlaying: song });
+            await commit("setIsPlaying", { isPlaying: true });
+            addSongMetaData(song.title, song.artist, song.cover, song.album);
         },
         updateSongDuration({ commit }, { duration }) {
             commit("updateSongDuration", { duration });
