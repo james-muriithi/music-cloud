@@ -1,4 +1,10 @@
+import store from '../store';
+
 const globalNavigator = typeof navigator !== "undefined" && navigator;
+
+const mediaSessionEnabled = globalNavigator ?
+    "mediaSession" in globalNavigator :
+    false;
 
 const sizes = [{
         width: 96,
@@ -23,7 +29,7 @@ const sizes = [{
 ];
 
 function addSongMetaData(title, artist, songCover, album = "Unknown Album") {
-    if (globalNavigator) {
+    if (mediaSessionEnabled) {
 
         let artwork = sizes.map(size => {
             return {
@@ -40,6 +46,47 @@ function addSongMetaData(title, artist, songCover, album = "Unknown Album") {
             artwork,
         })
     }
+}
+
+
+const addActionListeners = () => {
+    // play previous
+    globalNavigator.mediaSession.setActionHandler("previoustrack", () => {
+            console.log("not yet supported")
+        })
+        // play next
+    globalNavigator.mediaSession.setActionHandler("nexttrack", () => {
+        console.log("not yet supported")
+    })
+
+    // play song
+    globalNavigator.mediaSession.setActionHandler("play", () => {
+        store.dispatch("player/setIsPlaying", {
+            isPlaying: true,
+        });
+    })
+
+    // pause song
+    globalNavigator.mediaSession.setActionHandler("pause", () => {
+        store.dispatch("player/setIsPlaying", {
+            isPlaying: false,
+        });
+    })
+
+    // forward song
+    globalNavigator.mediaSession.setActionHandler("seekforward", () => {
+        console.log("not yet supported")
+    })
+
+    // rewind song
+    globalNavigator.mediaSession.setActionHandler("seekbackward", () => {
+        console.log("not yet supported")
+    });
+
+};
+
+if (mediaSessionEnabled) {
+    addActionListeners()
 }
 
 export {
