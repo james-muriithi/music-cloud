@@ -1,6 +1,6 @@
 <template>
   <audio
-    @ended="pause"
+    @ended="ended"
     id="music-palyer"
     preload="metadata"
     ref="music_player"
@@ -98,10 +98,11 @@ export default {
     },
   },
   methods: {
-    pause() {
+    ended() {
       this.$store.dispatch("player/setIsPlaying", {
         isPlaying: false,
       });
+      this.$store.dispatch("player/playNext");
     },
     updateTime() {
       this.$store.dispatch("player/updateSongCurrentTime", {

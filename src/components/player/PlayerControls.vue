@@ -5,11 +5,11 @@
         <v-icon>mdi-shuffle-variant</v-icon>
       </v-btn>
 
-      <v-btn icon>
+      <v-btn icon @click="playPrevious">
         <v-icon>mdi-skip-previous</v-icon>
       </v-btn>
       <play-button @play="togglePlay" :playing="isPlaying" />
-      <v-btn icon>
+      <v-btn icon @click="playNext">
         <v-icon>mdi-skip-next</v-icon>
       </v-btn>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import PlayButton from "./PlayButton.vue";
 import SongProgress from "./SongProgress.vue";
 export default {
@@ -32,6 +32,7 @@ export default {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
   },
   methods: {
+    ...mapActions("player", ["playNext", "playPrevious"]),
     togglePlay() {
       if (this.currentPlaying.title && this.currentPlaying.artist) {
         this.$store.dispatch("player/setIsPlaying", {
