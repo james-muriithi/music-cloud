@@ -51,6 +51,12 @@ export default {
     currentTime(state) {
       return state.playbackTimeInfo.currentTime;
     },
+    repeat(state) {
+      return state.repeat;
+    },
+    shuffle(state){
+        return state.shuffle;
+    }
   },
   mutations: {
     setVolumeState(state, { volume }) {
@@ -107,11 +113,11 @@ export default {
 
       switch (collection) {
         case "recent-songs":
-            commit('setSongsQueue', rootState.music.music.recentSongs)
+          commit("setSongsQueue", rootState.music.music.recentSongs);
           break;
-          case "album":
-            commit('setSongsQueue', rootState.music.music.recentSongs)
-          break;  
+        case "album":
+          commit("setSongsQueue", rootState.music.music.recentSongs);
+          break;
 
         default:
           break;
@@ -126,33 +132,57 @@ export default {
     setTimeChangedByUser({ commit }, value) {
       commit("setTimeChangedByUser", value);
     },
-    playNext({state, dispatch}){
-        if(state.repeat == 2 && state.queue.length > 0){
-            const currentPlayingIndex = state.queue.findIndex(song => song.id == state.currentlyPlaying.id) || 0;
-            let nextSong = null;
-            // if its not the last song
-            if (currentPlayingIndex + 1 < state.queue.length) {
-                if (!state.shuffle) {
-                    nextSong = state.queue[currentPlayingIndex + 1];                
-                }
-    
-                dispatch('play', {song: nextSong});
+    playNext({ state, dispatch }) {
+      if (state.repeat != 1 && state.queue.length > 0) {
+
+        const currentPlayingIndex =
+          state.queue.findIndex(
+            (song) => song.id == state.currentlyPlaying.id
+          ) || 0;
+
+        let nextSong = null;
+        // if its not the last song
+        if (currentPlayingIndex + 1 < state.queue.length) {
+          if (!state.shuffle) {
+            nextSong = state.queue[currentPlayingIndex + 1];
+          }
+
+          dispatch("play", { song: nextSong });
+        } else {
+          // if repeat all play first song when end reached
+          if (state.repeat == 2) {
+            if (!state.shuffle) {
+              nextSong = state.queue[0];
+
+              dispatch("play", { song: nextSong });
             }
+          }
         }
+      }
     },
-    playPrevious({state, dispatch}){
-        if(state.repeat == 2 && state.queue.length > 0){
-            const currentPlayingIndex = state.queue.findIndex(song => song.id == state.currentlyPlaying.id) || 0;
-            let prevSong = null;
-            // if its not the last song
-            if (currentPlayingIndex - 1 >= 0) {
-                if (!state.shuffle) {
-                    prevSong = state.queue[currentPlayingIndex - 1];                
-                }
-    
-                dispatch('play', {song: prevSong});
-            }
+    playPrevious({ state, dispatch }) {
+      if (state.queue.length > 0) {
+        const currentPlayingIndex =
+          state.queue.findIndex(
+            (song) => song.id == state.currentlyPlaying.id
+          ) || 0;
+        let prevSong = null;
+        // if its not the last song
+        if (currentPlayingIndex - 1 >= 0) {
+          if (!state.shuffle) {
+            prevSong = state.queue[currentPlayingIndex - 1];
+          }
+
+          dispatch("play", { song: prevSong });
         }
+      }
+    },
+    toggleRepeat({ commit, getters }) {
+      const repeat = getters.repeat == 2 ? 0 : getters.repeat + 1;
+      commit("setRepeat", { repeat });
+    },
+    toggleShuffle({commit, getters}){
+        commit('setShuffle', {shuffle: !getters.shuffle})
     }
   },
 };
