@@ -20,6 +20,10 @@ export default {
       type: Number,
       default: 34,
     },
+    size: {
+      type: Number,
+      default: 34,
+    },
     colors: {
       type: Object,
       default: function () {
@@ -48,6 +52,7 @@ export default {
         "--dark-color": this.colors.dark.color,
         "--light-bg": this.colors.light.background,
         "--light-color": this.colors.light.color,
+        "--size": `${this.size}px`,
       };
     },
   },
@@ -62,13 +67,13 @@ export default {
 <style lang="scss" scoped>
 button {
   margin-right: 8px;
-  height: var(--height);
-  width: var(--width);
+  height: var(--height) !important;
+  width: var(--width) !important;
 }
 .pause-btn {
   transition: all 0.3s;
   i {
-    font-size: 22px;
+    font-size: var(--size) !important;
   }
   &.theme--dark {
     background: var(--dark-bg);

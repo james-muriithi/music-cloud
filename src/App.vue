@@ -96,4 +96,10 @@ export default {
 .align-items-center {
   align-items: center;
 }
+.align-items-end {
+  align-items: flex-end;
+}
+.justify-content-center {
+  justify-content: center;
+}
 </style>

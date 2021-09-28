@@ -4,13 +4,11 @@
       
       <shuffle-button />
 
-      <v-btn icon @click="playPrevious">
-        <v-icon>mdi-skip-previous</v-icon>
-      </v-btn>
+      <previous-button />
+
       <play-button @play="togglePlay" :playing="isPlaying" />
-      <v-btn icon @click="playNext">
-        <v-icon>mdi-skip-next</v-icon>
-      </v-btn>
+      
+      <next-button />
 
       <repeat-button />
 
@@ -20,19 +18,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import NextButton from './NextButton.vue';
 import PlayButton from "./PlayButton.vue";
+import PreviousButton from './PreviousButton.vue';
 import RepeatButton from './RepeatButton.vue';
 import ShuffleButton from './ShuffleButton.vue';
 import SongProgress from "./SongProgress.vue";
 export default {
-  components: { SongProgress, PlayButton, RepeatButton, ShuffleButton },
+  components: { SongProgress, PlayButton, RepeatButton, ShuffleButton, NextButton, PreviousButton },
   name: "PlayerControls",
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
   },
   methods: {
-    ...mapActions("player", ["playNext", "playPrevious"]),
     togglePlay() {
       if (this.currentPlaying.title && this.currentPlaying.artist) {
         this.$store.dispatch("player/setIsPlaying", {

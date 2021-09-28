@@ -15,9 +15,7 @@
           </div>
         </v-col>
         <v-col cols="3" class="px-0 text-left">
-          <v-btn icon>
-            <v-icon>mdi-heart-outline</v-icon>
-          </v-btn>
+          <favourite-button />
         </v-col>
       </v-row>
     </div>
@@ -27,7 +25,9 @@
 <script>
 import { mapGetters } from "vuex";
 import { fillImageDimensions } from "../../helpers";
+import FavouriteButton from './FavouriteButton.vue';
 export default {
+  components: { FavouriteButton },
   name: "SongInfo",
   computed: {
     cover() {
