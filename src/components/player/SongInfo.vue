@@ -6,7 +6,7 @@
     </div>
     <div class="song-details pl-3 d-flex w-100">
       <v-row class="mr-0">
-        <v-col cols="9" class="pr-0">
+        <v-col cols="9" class="pr-0 overflow-x-hidden border-box">
           <div class="w-100">
             <div class="song-title fill-width">{{ currentPlaying.title }}</div>
             <div class="song-artist">
@@ -71,5 +71,8 @@ export default {
       }
     }
   }
+}
+.border-box{
+  box-sizing: border-box;
 }
 </style>

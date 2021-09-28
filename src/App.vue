@@ -6,6 +6,7 @@
       <v-main>
         <router-view />
         <bottom-player />
+        <small-screen-player />
       </v-main>
     </v-app>
     <audio-player />
@@ -13,39 +14,40 @@
 </template>
 
 <script>
-import AudioPlayer from './components/player/AudioPlayer.vue';
-import BottomPlayer from './components/player/BottomPlayer.vue';
+import AudioPlayer from "./components/player/AudioPlayer.vue";
+import BottomPlayer from "./components/player/BottomPlayer.vue";
+import SmallScreenPlayer from "./components/player/SmallScreenPlayer.vue";
 export default {
-  components: { BottomPlayer, AudioPlayer },
   name: "App",
+  components: { BottomPlayer, AudioPlayer, SmallScreenPlayer },
   data() {
     return {
-      isLoading: false
-    }
+      isLoading: false,
+    };
   },
 };
 </script>
 
 <style lang="scss">
 ::-webkit-scrollbar {
-    width: 11px;
-  }
+  width: 11px;
+}
 
-  ::-webkit-scrollbar-track {
-    background: #202020;
-    border-left: 1px solid #2c2c2c;
-  }
+::-webkit-scrollbar-track {
+  background: #202020;
+  border-left: 1px solid #2c2c2c;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: #3e3e3e;
-    border: solid 2px #202020;
-    border-radius: 5px;
-  }
+::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border: solid 2px #202020;
+  border-radius: 5px;
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
-  }
-  
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
 .theme--dark.v-application {
   background: var(--v-background-base) !important;
   ::-webkit-scrollbar {
@@ -88,10 +90,10 @@ export default {
     background: #4c4c4d;
   }
 }
-.w-100{
+.w-100 {
   width: 100%;
 }
-.align-items-center{
+.align-items-center {
   align-items: center;
 }
 </style>
