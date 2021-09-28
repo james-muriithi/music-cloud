@@ -1,11 +1,11 @@
 <template>
   <div class="text-center h-100">
-    <v-bottom-sheet v-model="sheet" persistent class="h-100" fullscreen>
+    <v-bottom-sheet v-model="open" persistent class="h-100" fullscreen>
       <v-sheet class="text-center player-sheet" height="100%">
         <v-container fluid class="upper-part">
           <v-row>
             <v-col cols="2">
-              <v-btn icon @click="sheet = !sheet" class="close-btn">
+              <v-btn icon @click="close" class="close-btn">
                 <v-icon>mdi-chevron-down</v-icon>
               </v-btn>
             </v-col>
@@ -18,37 +18,53 @@
           </v-row>
           <div class="song-image d-flex justify-content-center mt-12">
             <v-img
-              lazy-src="https://picsum.photos/id/11/10/6"
+              :lazy-src="cover"
               max-height="250"
               max-width="250"
               min-height="200"
-              src="https://picsum.photos/id/11/500/300"
+              :src="thumbnail"
             ></v-img>
           </div>
         </v-container>
         <v-container fluid class="lower-part mt-5 px-8">
           <div class="song-info text-left">
             <div class="song-title fill-width">
-              <router-link to="/">Better</router-link>
+              <router-link to="/">{{ currentPlaying.title }}</router-link>
             </div>
             <div class="song-artist">
-              <router-link to="/">Khalid</router-link>
+              <router-link to="/">{{ currentPlaying.artist }}</router-link>
             </div>
           </div>
           <div class="bottom">
-              <song-progress />
-              <div class="song-controls mt-5">
-                  <v-row class="align-items-center">
-                      <v-col cols="2">
-                          <favourite-button :size="30" />
-                      </v-col>
-                      <v-col cols="10" class="text-left">
-                          <previous-button :size="45" class="ml-3" />
-                          <play-button :width="55" :height="55" :size="45" class="mx-7" />
-                          <next-button :size="45" class="" />
-                      </v-col>
-                  </v-row>
-              </div>
+            <song-progress />
+            <div class="song-controls mt-5">
+              <v-row>
+                <v-col cols="12" class="d-flex align-items-center">
+                  <favourite-button :size="30" />
+
+                  <div
+                    class="
+                      d-flex
+                      justify-content-center
+                      align-items-center
+                      w-100
+                      ml--5
+                    "
+                  >
+                    <previous-button :size="45" class="ml-3" />
+                    <play-button
+                      :width="55"
+                      :height="55"
+                      :size="45"
+                      class="mx-7"
+                      @play="togglePlay"
+                      :playing="isPlaying"
+                    />
+                    <next-button :size="45" class="" />
+                  </div>
+                </v-col>
+              </v-row>
+            </div>
           </div>
         </v-container>
       </v-sheet>
@@ -57,17 +73,50 @@
 </template>
 
 <script>
-import FavouriteButton from './FavouriteButton.vue';
-import NextButton from './NextButton.vue';
-import PlayButton from './PlayButton.vue';
-import PreviousButton from './PreviousButton.vue';
-import SongProgress from './SongProgress.vue';
+import { mapGetters } from "vuex";
+import { fillImageDimensions } from '../../helpers';
+import FavouriteButton from "./FavouriteButton.vue";
+import NextButton from "./NextButton.vue";
+import PlayButton from "./PlayButton.vue";
+import PreviousButton from "./PreviousButton.vue";
+import SongProgress from "./SongProgress.vue";
 export default {
   name: "SmallScreenPlayer",
-  components: { SongProgress, FavouriteButton, PreviousButton, PlayButton, NextButton },
-  data: () => ({
-    sheet: true,
-  }),
+  components: {
+    SongProgress,
+    FavouriteButton,
+    PreviousButton,
+    PlayButton,
+    NextButton,
+  },
+  emits: ["close"],
+  props: {
+    open: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+    cover() {
+      return fillImageDimensions(this.currentPlaying.cover, 250, 250);
+    },
+    thumbnail(){
+        return fillImageDimensions(this.currentPlaying.cover, 50, 50);
+    }
+  },
+  methods: {
+    togglePlay() {
+      if (this.currentPlaying.title && this.currentPlaying.artist) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+      }
+    },
+    close() {
+      this.$emit("close");
+    },
+  },
 };
 </script>
 
@@ -101,15 +150,18 @@ export default {
     }
   }
 
-  .bottom{
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
+  .bottom {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
   }
 
   a {
     text-decoration: none;
+  }
+  .ml--5 {
+    margin-left: -45px;
   }
 }
 </style>

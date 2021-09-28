@@ -5,8 +5,8 @@
       <side-nav />
       <v-main>
         <router-view />
-        <bottom-player />
-        <small-screen-player />
+        <bottom-player @openPlayer="openPlayer" />
+        <small-screen-player :open="playerOpen" @close="closePlayer" />
       </v-main>
     </v-app>
     <audio-player />
@@ -23,7 +23,16 @@ export default {
   data() {
     return {
       isLoading: false,
+      playerOpen: false,
     };
+  },
+  methods: {
+    closePlayer(){
+      this.playerOpen = false
+    },
+    openPlayer(){
+      this.playerOpen = true
+    }
   },
 };
 </script>

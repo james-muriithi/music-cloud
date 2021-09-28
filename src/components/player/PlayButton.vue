@@ -22,7 +22,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 34,
+      default: 22,
     },
     colors: {
       type: Object,

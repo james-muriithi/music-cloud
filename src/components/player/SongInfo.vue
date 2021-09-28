@@ -1,6 +1,6 @@
 <template>
   <div class="song-info d-flex">
-    <div class="song-image">
+    <div class="song-image" @click="openSmallScreenPlayer" >
       <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
       </v-img>
     </div>
@@ -8,7 +8,7 @@
       <v-row class="mr-0">
         <v-col cols="9" class="pr-0 overflow-x-hidden border-box">
           <div class="w-100">
-            <div class="song-title fill-width">{{ currentPlaying.title }}</div>
+            <div class="song-title fill-width" @click="openSmallScreenPlayer">{{ currentPlaying.title }}</div>
             <div class="song-artist">
               <router-link to="/">{{ currentPlaying.artist }}</router-link>
             </div>
@@ -29,11 +29,17 @@ import FavouriteButton from './FavouriteButton.vue';
 export default {
   components: { FavouriteButton },
   name: "SongInfo",
+  emits: ['openPlayer'],
   computed: {
     cover() {
       return fillImageDimensions(this.currentPlaying.cover, 200, 200);
     },
     ...mapGetters("player", ["currentPlaying"]),
+  },
+  methods: {
+    openSmallScreenPlayer(){
+      this.$emit('openPlayer')
+    }
   },
 };
 </script>
