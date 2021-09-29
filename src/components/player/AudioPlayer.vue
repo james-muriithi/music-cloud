@@ -53,14 +53,16 @@ export default {
           this.currentPlaying.title
         );
 
-        await this.$refs.music_player.play();
-        this.$store.dispatch("player/updateSongDuration", {
-          duration: this.$refs.music_player.duration * 1000,
-        });
+        setTimeout(async () => {
+          await this.$refs.music_player.play();
+          this.$store.dispatch("player/updateSongDuration", {
+            duration: this.$refs.music_player.duration * 1000,
+          });
 
-        this.$store.dispatch("player/setVolume", {
-          volume: this.$refs.music_player.volume * 100,
-        });
+          this.$store.dispatch("player/setVolume", {
+            volume: this.$refs.music_player.volume * 100,
+          });
+        }, 150);
       }
     },
     isPlaying(newValue) {

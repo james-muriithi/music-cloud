@@ -156,7 +156,6 @@ export default {
         Vibrant.from(this.thumbnail)
           .getPalette()
           .then(function (palette) {
-            console.log(palette);
             if (self.$refs._upper_part && self.$vuetify.theme.dark) {
               self.$refs._upper_part.style.backgroundColor =
                 palette.Vibrant.hex;
