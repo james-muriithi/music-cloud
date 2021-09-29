@@ -2,7 +2,7 @@
   <div class="text-center h-100">
     <v-bottom-sheet v-model="open" persistent class="h-100" fullscreen>
       <v-sheet class="text-center player-sheet" height="100%">
-        <v-container fluid class="upper-part">
+        <v-container fluid class="upper-part" ref="_upper_part">
           <v-row>
             <v-col cols="2">
               <v-btn icon @click="close" class="close-btn">
@@ -16,11 +16,11 @@
               Playlist
             </v-col>
           </v-row>
-          <div class="song-image d-flex justify-content-center mt-9">
+          <div class="song-image d-flex justify-content-center mt-7">
             <v-img
               :lazy-src="thumbnail"
               max-height="250"
-              max-width="250"
+              max-width="240"
               min-height="200"
               :src="cover"
             ></v-img>
@@ -121,6 +121,23 @@ export default {
     thumbnail() {
       return fillImageDimensions(this.currentPlaying.cover, 50, 50);
     },
+    songData() {
+      return (
+        this.currentPlaying.artist &&
+        this.currentPlaying.id &&
+        this.currentPlaying.title
+      );
+    },
+  },
+  watch: {
+    open: function (val) {
+      document.querySelector("html").style.overflow = val ? "hidden" : "auto";
+    },
+    songData(newValue) {
+      if (newValue) {
+        this.setColor();
+      }
+    },
   },
   methods: {
     togglePlay() {
@@ -133,28 +150,45 @@ export default {
     close() {
       this.$emit("close");
     },
+    setColor() {
+      this.$nextTick(() => {
+        const self = this;
+        Vibrant.from(this.thumbnail)
+          .getPalette()
+          .then(function (palette) {
+            console.log(palette);
+            if (self.$refs._upper_part && self.$vuetify.theme.dark) {
+              self.$refs._upper_part.style.backgroundColor =
+                palette.Vibrant.hex;
+            }
+          })
+          .catch((e) => console.log(e));
+      });
+    },
   },
   mounted() {
-    this.$nextTick(() => {
-      Vibrant.from(this.thumbnail)
-        .getPalette()
-        .then(function (palette) {
-          console.log(palette);
-        })
-        .catch((e) => console.log(e));
-    });
+    this.setColor();
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.theme--dark .upper-part {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0, #1e1e1e 100%);
+}
 .player-sheet {
-  padding-top: 20px;
+  .upper-part {
+    padding-top: 20px;
+    border-bottom: none !important;
+    background-size: 100% 100%;
+    background-position: center center;
+  }
   .close-btn {
     i {
       font-size: 35px;
     }
   }
+
   .song-title {
     font-size: 30px;
     font-weight: 700;
