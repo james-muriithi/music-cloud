@@ -1,23 +1,21 @@
 <template>
   <div class="song-info d-flex">
-    <div class="song-image">
+    <div class="song-image" @click="openSmallScreenPlayer" >
       <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
       </v-img>
     </div>
     <div class="song-details pl-3 d-flex w-100">
       <v-row class="mr-0">
-        <v-col cols="9" class="pr-0">
+        <v-col cols="9" class="pr-0 overflow-x-hidden border-box">
           <div class="w-100">
-            <div class="song-title fill-width">{{ currentPlaying.title }}</div>
+            <div class="song-title fill-width" @click="openSmallScreenPlayer">{{ currentPlaying.title }}</div>
             <div class="song-artist">
               <router-link to="/">{{ currentPlaying.artist }}</router-link>
             </div>
           </div>
         </v-col>
         <v-col cols="3" class="px-0 text-left">
-          <v-btn icon>
-            <v-icon>mdi-heart-outline</v-icon>
-          </v-btn>
+          <favourite-button />
         </v-col>
       </v-row>
     </div>
@@ -27,13 +25,21 @@
 <script>
 import { mapGetters } from "vuex";
 import { fillImageDimensions } from "../../helpers";
+import FavouriteButton from './FavouriteButton.vue';
 export default {
+  components: { FavouriteButton },
   name: "SongInfo",
+  emits: ['openPlayer'],
   computed: {
     cover() {
       return fillImageDimensions(this.currentPlaying.cover, 200, 200);
     },
     ...mapGetters("player", ["currentPlaying"]),
+  },
+  methods: {
+    openSmallScreenPlayer(){
+      this.$emit('openPlayer')
+    }
   },
 };
 </script>
@@ -71,5 +77,8 @@ export default {
       }
     }
   }
+}
+.border-box{
+  box-sizing: border-box;
 }
 </style>

@@ -1,21 +1,17 @@
 <template>
   <div class="player-controls">
     <div class="controls d-flex justify-content-center">
-      <v-btn icon>
-        <v-icon>mdi-shuffle-variant</v-icon>
-      </v-btn>
+      
+      <shuffle-button />
 
-      <v-btn icon>
-        <v-icon>mdi-skip-previous</v-icon>
-      </v-btn>
+      <previous-button />
+
       <play-button @play="togglePlay" :playing="isPlaying" />
-      <v-btn icon>
-        <v-icon>mdi-skip-next</v-icon>
-      </v-btn>
+      
+      <next-button />
 
-      <v-btn icon>
-        <v-icon>mdi-repeat-variant</v-icon>
-      </v-btn>
+      <repeat-button />
+
     </div>
     <song-progress />
   </div>
@@ -23,10 +19,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import NextButton from './NextButton.vue';
 import PlayButton from "./PlayButton.vue";
+import PreviousButton from './PreviousButton.vue';
+import RepeatButton from './RepeatButton.vue';
+import ShuffleButton from './ShuffleButton.vue';
 import SongProgress from "./SongProgress.vue";
 export default {
-  components: { SongProgress, PlayButton },
+  components: { SongProgress, PlayButton, RepeatButton, ShuffleButton, NextButton, PreviousButton },
   name: "PlayerControls",
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),

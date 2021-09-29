@@ -1,6 +1,6 @@
 <template>
   <audio
-    @ended="pause"
+    @ended="ended"
     id="music-palyer"
     preload="metadata"
     ref="music_player"
@@ -26,6 +26,7 @@ export default {
       "volume",
       "currentTime",
       "timeChangedByUser",
+      "repeat",
     ]),
     songData() {
       return (
@@ -93,15 +94,28 @@ export default {
         this.$refs.music_player.currentTime = this.currentTime / 1000;
         this.$store.dispatch("player/setTimeChangedByUser", false);
         // if song had ended start playing
-        
       }
     },
   },
   methods: {
-    pause() {
+    async ended() {
       this.$store.dispatch("player/setIsPlaying", {
         isPlaying: false,
       });
+      // repeat one song
+      if (this.repeat == 1) {
+        await this.$store.dispatch("player/updateSongCurrentTime", {
+          currentTime: 0,
+        });
+
+        await this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: true,
+        });
+        return;
+      }
+
+      // if not repeat one play next song
+      this.$store.dispatch("player/playNext");
     },
     updateTime() {
       this.$store.dispatch("player/updateSongCurrentTime", {
