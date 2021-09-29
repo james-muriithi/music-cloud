@@ -24,6 +24,7 @@
               min-height="200"
               :src="cover"
             ></v-img>
+            <v-img class="d-none" :src="cover" ref="img" />
           </div>
         </v-container>
         <v-container fluid class="lower-part mt-3 px-1">
@@ -83,14 +84,15 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { fillImageDimensions } from '../../helpers';
+import Vibrant from "node-vibrant";
+import { fillImageDimensions } from "../../helpers";
 import FavouriteButton from "./FavouriteButton.vue";
 import NextButton from "./NextButton.vue";
 import PlayButton from "./PlayButton.vue";
 import PreviousButton from "./PreviousButton.vue";
-import RepeatButton from './RepeatButton.vue';
-import ShareButton from './ShareButton.vue';
-import ShuffleButton from './ShuffleButton.vue';
+import RepeatButton from "./RepeatButton.vue";
+import ShareButton from "./ShareButton.vue";
+import ShuffleButton from "./ShuffleButton.vue";
 import SongProgress from "./SongProgress.vue";
 export default {
   name: "SmallScreenPlayer",
@@ -116,9 +118,9 @@ export default {
     cover() {
       return fillImageDimensions(this.currentPlaying.cover, 250, 250);
     },
-    thumbnail(){
-        return fillImageDimensions(this.currentPlaying.cover, 50, 50);
-    }
+    thumbnail() {
+      return fillImageDimensions(this.currentPlaying.cover, 50, 50);
+    },
   },
   methods: {
     togglePlay() {
@@ -131,6 +133,16 @@ export default {
     close() {
       this.$emit("close");
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      Vibrant.from(this.thumbnail)
+        .getPalette()
+        .then(function (palette) {
+          console.log(palette);
+        })
+        .catch((e) => console.log(e));
+    });
   },
 };
 </script>
