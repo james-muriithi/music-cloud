@@ -16,13 +16,13 @@
               Playlist
             </v-col>
           </v-row>
-          <div class="song-image d-flex justify-content-center mt-12">
+          <div class="song-image d-flex justify-content-center mt-9">
             <v-img
-              :lazy-src="cover"
+              :lazy-src="thumbnail"
               max-height="250"
               max-width="250"
               min-height="200"
-              :src="thumbnail"
+              :src="cover"
             ></v-img>
           </div>
         </v-container>
@@ -122,7 +122,7 @@ export default {
 
 <style lang="scss" scoped>
 .player-sheet {
-  padding-top: 30px;
+  padding-top: 20px;
   .close-btn {
     i {
       font-size: 35px;
