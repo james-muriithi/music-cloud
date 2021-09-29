@@ -26,8 +26,17 @@
             ></v-img>
           </div>
         </v-container>
-        <v-container fluid class="lower-part mt-5 px-8">
-          <div class="song-info text-left">
+        <v-container fluid class="lower-part mt-3 px-1">
+          <div class="center d-flex">
+            <div class="shuffle-repeat text-left">
+              <shuffle-button />
+              <repeat-button />
+            </div>
+            <div class="share ml-auto">
+              <share-button :size="22" />
+            </div>
+          </div>
+          <div class="song-info text-left px-8">
             <div class="song-title fill-width">
               <router-link to="/">{{ currentPlaying.title }}</router-link>
             </div>
@@ -79,6 +88,9 @@ import FavouriteButton from "./FavouriteButton.vue";
 import NextButton from "./NextButton.vue";
 import PlayButton from "./PlayButton.vue";
 import PreviousButton from "./PreviousButton.vue";
+import RepeatButton from './RepeatButton.vue';
+import ShareButton from './ShareButton.vue';
+import ShuffleButton from './ShuffleButton.vue';
 import SongProgress from "./SongProgress.vue";
 export default {
   name: "SmallScreenPlayer",
@@ -88,6 +100,9 @@ export default {
     PreviousButton,
     PlayButton,
     NextButton,
+    ShuffleButton,
+    RepeatButton,
+    ShareButton,
   },
   emits: ["close"],
   props: {

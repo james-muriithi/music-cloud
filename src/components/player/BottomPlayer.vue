@@ -4,7 +4,7 @@
     <v-container fluid>
       <v-row class="py-0">
         <v-col cols="10" sm="5" class="pr-0">
-          <song-info @openPlayer="openSmallScreenPlayer"  />
+          <song-info @openPlayer="openSmallScreenPlayer" />
         </v-col>
         <v-col sm="5" lg="5" class="d-none d-sm-inline-block">
           <player-controls />
@@ -43,7 +43,7 @@ import Volume from "./Volume.vue";
 export default {
   components: { Volume, PlayerControls, PlayButton, SongInfo, ProgressBar },
   name: "BottomPlayer",
-  emits: ['openPlayer'],
+  emits: ["openPlayer"],
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
     songProgress() {
@@ -56,9 +56,9 @@ export default {
       }
       return 0;
     },
-    screenWidth(){
-      return this.$vuetify.breakpoint.width
-    }
+    screenWidth() {
+      return this.$vuetify.breakpoint.width;
+    },
   },
   methods: {
     togglePlay() {
@@ -68,11 +68,15 @@ export default {
         });
       }
     },
-    openSmallScreenPlayer(){
-      if (this.screenWidth < 450) {
-        this.$emit('openPlayer')
+    openSmallScreenPlayer() {
+      if (
+        this.screenWidth < 450 &&
+        this.currentPlaying.title &&
+        this.currentPlaying.artist
+      ) {
+        this.$emit("openPlayer");
       }
-    }
+    },
   },
 };
 </script>
