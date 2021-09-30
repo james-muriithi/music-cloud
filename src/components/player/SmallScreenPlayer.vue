@@ -34,7 +34,7 @@
               <repeat-button />
             </div>
             <div class="share ml-auto">
-              <share-button :size="22" />
+              <share-button :size="22" :shareText="shareData" />
             </div>
           </div>
           <div class="song-info text-left px-8">
@@ -121,6 +121,10 @@ export default {
     thumbnail() {
       return fillImageDimensions(this.currentPlaying.cover, 50, 50);
     },
+    shareData() {
+      return `${this.currentPlaying.artist} ${this.currentPlaying.title} \n\n\
+      ${this.currentPlaying.url}`;
+    },
     songData() {
       return (
         this.currentPlaying.artist &&
@@ -132,6 +136,9 @@ export default {
   watch: {
     open: function (val) {
       document.querySelector("html").style.overflow = val ? "hidden" : "auto";
+      if (val) {
+        this.setColor();
+      }
     },
     songData(newValue) {
       if (newValue) {

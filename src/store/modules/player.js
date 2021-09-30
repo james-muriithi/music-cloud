@@ -40,6 +40,7 @@ export default {
           currentTime: state.playbackTimeInfo.currentTime,
           songDuration: state.playbackTimeInfo.songDuration,
         },
+        url: getSafe(() => currentPlaying.url, "")
       };
     },
     isPlaying(state) {
