@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @keypress.space.prevent="spacePause" tabindex="0">
     <v-app>
       <app-bar />
       <side-nav />
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import AudioPlayer from "./components/player/AudioPlayer.vue";
 import BottomPlayer from "./components/player/BottomPlayer.vue";
 import SmallScreenPlayer from "./components/player/SmallScreenPlayer.vue";
@@ -26,13 +27,28 @@ export default {
       playerOpen: false,
     };
   },
+  computed: {
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+  },
   methods: {
-    closePlayer(){
-      this.playerOpen = false
+    closePlayer() {
+      this.playerOpen = false;
     },
-    openPlayer(){
-      this.playerOpen = true
-    }
+    openPlayer() {
+      this.playerOpen = true;
+    },
+    togglePlay() {
+      if (this.currentPlaying.title && this.currentPlaying.artist) {
+        this.$store.dispatch("player/setIsPlaying", {
+          isPlaying: !this.isPlaying,
+        });
+      }
+    },
+    spacePause(e) {
+      if (e.target.tagName.toUpperCase() == 'INPUT') return;
+      this.togglePlay();
+      e.preventDefault();
+    },
   },
 };
 </script>
