@@ -1,19 +1,28 @@
-import axios from 'axios'
+import axios from "axios";
 
 const API_BASE_URL = "https://api.music.apple.com/v1/";
 
 const token = process.env.VUE_APP_TOKEN;
 
-axios.defaults.baseURL = API_BASE_URL
-axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
+axios.defaults.baseURL = API_BASE_URL;
+axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 
 function fetchBrowseData(limit) {
-    return axios.get('catalog/us/charts', { params: { types: "albums,songs,playlists", limit } })
-        .then(res => {
-            return res.data.results
-        })
+  return axios
+    .get("catalog/us/charts", {
+      params: { types: "albums,songs,playlists", limit },
+    })
+    .then((res) => {
+      return res.data.results;
+    });
 }
 
-export {
-    fetchBrowseData
-};
+function fetchAlbum(albumId) {
+  return axios
+    .get("catalog/us/album", { params: { ids: albumId } })
+    .then((res) => {
+      return res.data;
+    });
+}
+
+export { fetchBrowseData, fetchAlbum };
