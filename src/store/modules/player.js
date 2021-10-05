@@ -102,7 +102,7 @@ export default {
     setIsPlaying({ commit }, { isPlaying }) {
       commit("setIsPlaying", { isPlaying });
     },
-    async play({ commit, rootState }, { song, collection }) {
+    async play({ commit, rootGetters }, { song, collection }) {
       //pause current playing song
       await commit("setIsPlaying", { isPlaying: false });
       // add song to current playing
@@ -114,10 +114,10 @@ export default {
 
       switch (collection) {
         case "recent-songs":
-          commit("setSongsQueue", rootState.music.music.recentSongs);
+          commit("setSongsQueue", rootGetters['music/recentSongs']);
           break;
         case "album":
-          commit("setSongsQueue", rootState.music.music.recentSongs);
+          commit("setSongsQueue", rootGetters['album/albumSongs']);
           break;
 
         default:

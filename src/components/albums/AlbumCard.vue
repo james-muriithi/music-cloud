@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     playAlbum(){
-      this.$store.dispatch('album/fetchAlbum', this.album.id)
+      this.$store.dispatch('album/playAlbum', this.album.id)
     }
   }
 };

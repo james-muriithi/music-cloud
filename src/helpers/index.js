@@ -79,7 +79,7 @@ function extractAlbumData(rawAlbum) {
     track_count: rawAlbum.attributes.trackCount,
     url: rawAlbum.attributes.url,
     is_playing: false,
-    songs: rawAlbum.relationships.tracks.data,
+    songs: extractSongs(rawAlbum.relationships.tracks.data),
   };
 }
 

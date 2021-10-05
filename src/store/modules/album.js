@@ -19,7 +19,7 @@ export default {
       track_count: 0,
       url: null,
       is_playing: false,
-      songs: []
+      songs: [],
     },
   },
 
@@ -29,6 +29,9 @@ export default {
     },
     isAlbumPlaying(state) {
       return state.album.is_playing;
+    },
+    albumSongs(state) {
+      return state.album.songs;
     },
   },
   mutations: {
@@ -43,10 +46,25 @@ export default {
     },
   },
   actions: {
-      async fetchAlbum({commit}, albumId){
-        let album = await fetchAlbum(albumId);
-        album = extractAlbumData(album);
-        commit('setAlbum', {album});
+    async fetchAlbum({ commit }, albumId) {
+      let album = await fetchAlbum(albumId);
+      album = extractAlbumData(album);
+      commit("setAlbum", { album });
+    },
+    async playAlbum({ dispatch, getters }, albumId) {
+      await dispatch("fetchAlbum", albumId);
+      if (getters.albumSongs.length > 0) {
+        dispatch(
+          "player/play",
+          {
+            song: getters.albumSongs[0],
+            collection: "album",
+          },
+          {
+            root: true,
+          }
+        );
       }
-  }
+    },
+  },
 };
