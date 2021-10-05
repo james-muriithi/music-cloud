@@ -19,9 +19,9 @@ function fetchBrowseData(limit) {
 
 function fetchAlbum(albumId) {
   return axios
-    .get("catalog/us/album", { params: { ids: albumId } })
+    .get("catalog/us/albums", { params: { ids: albumId } })
     .then((res) => {
-      return res.data;
+      return res.data.data[0];
     });
 }
 

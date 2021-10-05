@@ -3,9 +3,11 @@
     <div class="album-card elevation-2" :style="background">
       <div class="album-tracks white--text">{{ album.track_count }} tracks</div>
       <div class="album-details d-flex">
-        <v-btn class="play-button white--text" fab icon>
+        <!-- <v-btn class="play-button white--text" fab icon>
           <v-icon>mdi-play</v-icon>
-        </v-btn>
+        </v-btn> -->
+        <play-button class="play-button" @play="playAlbum" :colors="playButtonColors" />
+
         <div class="details">
           <div
             class="album-title pl-2 pr-1 pt-0 white--text"
@@ -23,7 +25,9 @@
 </template>
 
 <script>
+import PlayButton from "../player/PlayButton.vue";
 export default {
+  components: { PlayButton },
   name: "AlbumCard",
   props: {
     album: {
@@ -46,6 +50,18 @@ export default {
     link() {
       return "/";
     },
+    playButtonColors() {
+      return {
+        dark: {
+          color: "#fff",
+          background: "#772bfb",
+        },
+        light: {
+          color: "#fff",
+          background: "#772bfb",
+        },  
+      };
+    },
     background() {
       return {
         background: `linear-gradient(180deg, rgba(0,0,0,0.8) 1%,rgba(0,0,0,.8) 5%,transparent,rgba(0,0,0,0.6) 90%,rgba(0,0,0,.8) 100%), 
@@ -55,6 +71,11 @@ export default {
       };
     },
   },
+  methods: {
+    playAlbum(){
+      this.$store.dispatch('album/fetchAlbum', this.album.id)
+    }
+  }
 };
 </script>
 
