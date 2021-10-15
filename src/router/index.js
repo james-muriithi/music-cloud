@@ -29,6 +29,11 @@ const routes = [
     name: "albums",
     component: () => import(/* webpackChunkName: "about" */ "../views/TopAlbums.vue"),
   },
+  {
+    path: "/playlists",
+    name: "playlists",
+    component: () => import(/* webpackChunkName: "about" */ "../views/TopPlaylists.vue"),
+  },
 ];
 
 const router = new VueRouter({

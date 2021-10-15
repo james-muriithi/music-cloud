@@ -2,8 +2,13 @@
   <router-link :to="link" class="fill-height">
     <div class="playlist-card elevation-2" :style="background">
       <div class="playlist-details d-flex">
-
-        <play-button class="play-button" :playing="isPlaylistlaying" @play="playPlaylist" :colors="playButtonColors" />
+        <play-button
+          @click.native.prevent=""
+          class="play-button"
+          :playing="isPlaylistPlaying"
+          @play="playPlaylist"
+          :colors="playButtonColors"
+        />
 
         <div class="details">
           <div class="album-title pl-2 pr-1 pt-0 white--text">
@@ -17,8 +22,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import PlayButton from '../player/controls/PlayButton.vue';
+import { mapGetters } from "vuex";
+import PlayButton from "../player/controls/PlayButton.vue";
 export default {
   components: { PlayButton },
   name: "PlaylistCard",
@@ -35,7 +40,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('playlist', ['isPlaylistlaying']),
+    ...mapGetters("playlist", ["currentPlaylist"]),
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+    isPlaylistPlaying() {
+      return this.currentPlaylist.id == this.playlist.id && this.isPlaying;
+    },
     cover() {
       return this.playlist.cover
         .replace("{w}", this.width)
@@ -64,15 +73,23 @@ export default {
         light: {
           color: "#fff",
           background: "#1db954",
-        },  
+        },
       };
     },
   },
   methods: {
-    playPlaylist(){
-      this.$store.dispatch('playlist/playPlaylist', this.playlist.id)
-    }
-  }
+    playPlaylist() {
+      if (this.currentPlaylist.id == this.playlist.id) {
+        if (this.currentPlaying.title && this.currentPlaying.artist) {
+          this.$store.dispatch("player/setIsPlaying", {
+            isPlaying: !this.isPlaying,
+          });
+        }
+      } else {
+        this.$store.dispatch("playlist/playPlaylist", this.playlist.id);
+      }
+    },
+  },
 };
 </script>
 

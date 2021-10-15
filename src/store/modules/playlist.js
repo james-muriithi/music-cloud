@@ -22,7 +22,7 @@ export default {
     currentPlaylist(state) {
       return state.playlist;
     },
-    isPlaylistlaying(state) {
+    isPlaylistPlaying(state) {
       return state.playlist.is_playing;
     },
     playlistSongs(state) {

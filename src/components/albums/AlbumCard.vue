@@ -8,6 +8,7 @@
           @click.native.prevent=""
           @play="playAlbum"
           :colors="playButtonColors"
+          :playing="isAlbumPlaying"
         />
 
         <div class="details">
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import PlayButton from "../player/controls/PlayButton.vue";
 export default {
   components: { PlayButton },
@@ -44,6 +46,8 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("album", ["currentAlbum"]),
+    ...mapGetters("player", ["isPlaying", "currentPlaying"]),
     cover() {
       return this.album.cover
         .replace("{w}", this.width)
@@ -51,6 +55,10 @@ export default {
     },
     link() {
       return "/";
+    },
+    isAlbumPlaying() {
+      console.log(this.currentAlbum.id == this.album.id && this.isPlaying);
+      return this.currentAlbum.id == this.album.id && this.isPlaying;
     },
     playButtonColors() {
       return {
@@ -75,7 +83,15 @@ export default {
   },
   methods: {
     playAlbum() {
-      this.$store.dispatch("album/playAlbum", this.album.id);
+      if (this.currentAlbum.id == this.album.id) {
+        if (this.currentPlaying.title && this.currentPlaying.artist) {
+          this.$store.dispatch("player/setIsPlaying", {
+            isPlaying: !this.isPlaying,
+          });
+        }
+      } else {
+        this.$store.dispatch("album/playAlbum", this.album.id);
+      }
     },
   },
 };
@@ -114,7 +130,7 @@ export default {
       height: 33px;
       width: 33px;
 
-      transition: all 0.3s ease 0.25s;
+      transition: all 0.2s ease 0.25s;
       transform: translateY(30px);
       filter: alpha(opacity=0);
       opacity: 0;

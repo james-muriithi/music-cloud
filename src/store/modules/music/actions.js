@@ -10,7 +10,7 @@ import { fetchBrowseData } from "../../../helpers/apple-music";
 export default {
   async fetchBrowseData(
     { commit },
-    { limit = 20, forceUpdate = false, albumLimit = 12 } = {}
+    { limit = 20, forceUpdate = false, albumLimit = 12, playlistLimit = 4 } = {}
   ) {
     let savedData = getFromLocalStorage("browse-data");
 
@@ -32,7 +32,7 @@ export default {
 
     let songs = extractSongs(data.songs[0].data);
     const albums = extractAlbums(data.albums[0].data, albumLimit);
-    const playlists = extractPlaylists(data.playlists[0].data, 4);
+    const playlists = extractPlaylists(data.playlists[0].data, playlistLimit);
 
     if (savedData && !forceUpdate) {
       songs = songs.slice(0, limit);
