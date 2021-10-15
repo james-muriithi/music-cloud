@@ -8,7 +8,10 @@ import {
 import { fetchBrowseData } from "../../../helpers/apple-music";
 
 export default {
-  async fetchBrowseData({ commit }, { limit = 20, forceUpdate = false } = {}) {
+  async fetchBrowseData(
+    { commit },
+    { limit = 20, forceUpdate = false, albumLimit = 12 } = {}
+  ) {
     let savedData = getFromLocalStorage("browse-data");
 
     try {
@@ -28,7 +31,7 @@ export default {
     }
 
     let songs = extractSongs(data.songs[0].data);
-    const albums = extractAlbums(data.albums[0].data, 12);
+    const albums = extractAlbums(data.albums[0].data, albumLimit);
     const playlists = extractPlaylists(data.playlists[0].data, 4);
 
     if (savedData && !forceUpdate) {

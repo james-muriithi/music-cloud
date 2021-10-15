@@ -24,6 +24,11 @@ const routes = [
     name: "recent",
     component: () => import(/* webpackChunkName: "about" */ "../views/RecentlyAdded.vue"),
   },
+  {
+    path: "/albums",
+    name: "albums",
+    component: () => import(/* webpackChunkName: "about" */ "../views/TopAlbums.vue"),
+  },
 ];
 
 const router = new VueRouter({
