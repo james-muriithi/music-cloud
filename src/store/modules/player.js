@@ -40,7 +40,7 @@ export default {
           currentTime: state.playbackTimeInfo.currentTime,
           songDuration: state.playbackTimeInfo.songDuration,
         },
-        url: getSafe(() => currentPlaying.url, "")
+        url: getSafe(() => currentPlaying.url, ""),
       };
     },
     isPlaying(state) {
@@ -55,9 +55,9 @@ export default {
     repeat(state) {
       return state.repeat;
     },
-    shuffle(state){
-        return state.shuffle;
-    }
+    shuffle(state) {
+      return state.shuffle;
+    },
   },
   mutations: {
     setVolumeState(state, { volume }) {
@@ -114,10 +114,13 @@ export default {
 
       switch (collection) {
         case "recent-songs":
-          commit("setSongsQueue", rootGetters['music/recentSongs']);
+          commit("setSongsQueue", rootGetters["music/recentSongs"]);
           break;
         case "album":
-          commit("setSongsQueue", rootGetters['album/albumSongs']);
+          commit("setSongsQueue", rootGetters["album/albumSongs"]);
+          break;
+        case "playlist":
+          commit("setSongsQueue", rootGetters["playlist/playlistSongs"]);
           break;
 
         default:
@@ -135,7 +138,6 @@ export default {
     },
     playNext({ state, dispatch }) {
       if (state.repeat != 1 && state.queue.length > 0) {
-
         const currentPlayingIndex =
           state.queue.findIndex(
             (song) => song.id == state.currentlyPlaying.id
@@ -182,8 +184,8 @@ export default {
       const repeat = getters.repeat == 2 ? 0 : getters.repeat + 1;
       commit("setRepeat", { repeat });
     },
-    toggleShuffle({commit, getters}){
-        commit('setShuffle', {shuffle: !getters.shuffle})
-    }
+    toggleShuffle({ commit, getters }) {
+      commit("setShuffle", { shuffle: !getters.shuffle });
+    },
   },
 };

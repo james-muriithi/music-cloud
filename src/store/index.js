@@ -4,6 +4,7 @@ import sidebar from "./modules/sidebar";
 import music from "./modules/music";
 import player from "./modules/player";
 import album from "./modules/album";
+import playlist from "./modules/playlist";
 
 Vue.use(Vuex);
 
@@ -16,5 +17,6 @@ export default new Vuex.Store({
     music,
     player,
     album,
+    playlist
   },
 });

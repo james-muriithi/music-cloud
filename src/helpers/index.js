@@ -83,6 +83,21 @@ function extractAlbumData(rawAlbum) {
   };
 }
 
+function extractPlaylistData(rawPlaylist) {
+  return {
+    id: rawPlaylist.id,
+    cover: rawPlaylist.attributes.artwork.url,
+    name: rawPlaylist.attributes.name,
+    curator_name: rawPlaylist.attributes.curatorName,
+    last_modified: rawPlaylist.attributes.lastModifiedDate,
+    description: rawPlaylist.attributes.description,
+    is_chart: rawPlaylist.attributes.isChart,
+    url: rawPlaylist.attributes.url,
+    is_playing: false,
+    songs: extractSongs(rawPlaylist.relationships.tracks.data),
+  };
+}
+
 function getSafe(fn, defaultVal = null) {
   try {
     return fn();
@@ -104,4 +119,5 @@ export {
   getSafe,
   fillImageDimensions,
   extractAlbumData,
+  extractPlaylistData
 };

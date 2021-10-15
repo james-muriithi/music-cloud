@@ -2,9 +2,9 @@
   <router-link :to="link" class="fill-height">
     <div class="playlist-card elevation-2" :style="background">
       <div class="playlist-details d-flex">
-        <v-btn class="play-button white--text" fab icon>
-          <v-icon>mdi-play</v-icon>
-        </v-btn>
+
+        <play-button class="play-button" :playing="isPlaylistlaying" @play="playPlaylist" :colors="playButtonColors" />
+
         <div class="details">
           <div class="album-title pl-2 pr-1 pt-0 white--text">
             {{ playlist.title }}
@@ -17,7 +17,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import PlayButton from '../player/PlayButton.vue';
 export default {
+  components: { PlayButton },
   name: "PlaylistCard",
   props: {
     playlist: {
@@ -32,6 +35,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('playlist', ['isPlaylistlaying']),
     cover() {
       return this.playlist.cover
         .replace("{w}", this.width)
@@ -51,7 +55,24 @@ export default {
         backgroundCenter: "center",
       };
     },
+    playButtonColors() {
+      return {
+        dark: {
+          color: "#fff",
+          background: "#1db954",
+        },
+        light: {
+          color: "#fff",
+          background: "#1db954",
+        },  
+      };
+    },
   },
+  methods: {
+    playPlaylist(){
+      this.$store.dispatch('playlist/playPlaylist', this.playlist.id)
+    }
+  }
 };
 </script>
 

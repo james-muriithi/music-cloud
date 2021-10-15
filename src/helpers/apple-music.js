@@ -25,4 +25,12 @@ function fetchAlbum(albumId) {
     });
 }
 
-export { fetchBrowseData, fetchAlbum };
+function fetchPlaylist(playlistId) {
+  return axios
+    .get("catalog/us/playlists", { params: { ids: playlistId } })
+    .then((res) => {
+      return res.data.data[0];
+    });
+}
+
+export { fetchBrowseData, fetchAlbum, fetchPlaylist };
