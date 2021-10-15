@@ -51,9 +51,10 @@ export default {
       album = extractAlbumData(album);
       commit("setAlbum", { album });
     },
-    async playAlbum({ dispatch, getters }, albumId) {
+    async playAlbum({ dispatch, getters, commit }, albumId) {
       await dispatch("fetchAlbum", albumId);
       if (getters.albumSongs.length > 0) {
+        commit('setAlbumPlaying');
         dispatch(
           "player/play",
           {

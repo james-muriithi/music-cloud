@@ -21,7 +21,8 @@ export default new Vuetify({
         artistColor: "#333333",
       },
       dark: {
-        primary: colors.blue.lighten3,
+        // primary: colors.blue.lighten3,
+        primary: "#772bfb",
         background: "#121212",
         navBackground: "#121212",
         cardBackground: "#181818",

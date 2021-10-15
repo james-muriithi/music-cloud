@@ -159,7 +159,7 @@ export default {
   computed: {
     ...mapGetters(["recentSongs", "topAlbums", "topArtists", "topPlaylists"]),
   },
-  async created() {
+  async beforeMount() {
     this.isLoading = true;
     await this.$store.dispatch("fetchBrowseData", { limit: 40 });
     this.isLoading = false;

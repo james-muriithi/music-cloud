@@ -1,7 +1,10 @@
 <template>
   <div class="song-card">
     <div class="d-flex">
-      <div class="song-image">
+      <div class="song-image d-flex align-items-center">
+        <div class="song-index" v-if="index">
+          {{index}}.
+        </div>
         <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
           <!-- <div class="play-btn" @click="play">
             <v-btn icon fab x-small>
@@ -18,7 +21,7 @@
           />
         </v-img>
       </div>
-      <v-row class="song-details pl-3">
+      <v-row :class="`song-details ${index ? 'ml-6' : 'pl-3'}`">
         <v-col cols="7" sm="5">
           <div :class="`song-title fill-width${currentSong ? ' playing' : ''}`">
             {{ song.title }}
@@ -61,7 +64,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import PlayButton from "../player/PlayButton.vue";
+import PlayButton from "../player/controls/PlayButton.vue";
 export default {
   components: { PlayButton },
   name: "SongCard",
@@ -70,6 +73,10 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      default: null
+    }
   },
   data() {
     return {
@@ -129,6 +136,12 @@ export default {
 
   @media (max-width: 576px) {
     padding-right: 4px;
+  }
+  .song-index{
+    flex: 0 0 auto;
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
   }
 
   margin-bottom: 15px;

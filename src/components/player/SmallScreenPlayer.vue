@@ -86,14 +86,14 @@
 import { mapGetters } from "vuex";
 import Vibrant from "node-vibrant";
 import { fillImageDimensions } from "../../helpers";
-import FavouriteButton from "./FavouriteButton.vue";
-import NextButton from "./NextButton.vue";
-import PlayButton from "./PlayButton.vue";
-import PreviousButton from "./PreviousButton.vue";
-import RepeatButton from "./RepeatButton.vue";
-import ShareButton from "./ShareButton.vue";
-import ShuffleButton from "./ShuffleButton.vue";
-import SongProgress from "./SongProgress.vue";
+import FavouriteButton from "./controls/FavouriteButton.vue";
+import NextButton from "./controls/NextButton.vue";
+import PlayButton from "./controls/PlayButton.vue";
+import PreviousButton from "./controls/PreviousButton.vue";
+import RepeatButton from "./controls/RepeatButton.vue";
+import ShareButton from "./controls/ShareButton.vue";
+import ShuffleButton from "./controls/ShuffleButton.vue";
+import SongProgress from "./controls/SongProgress.vue";
 export default {
   name: "SmallScreenPlayer",
   components: {

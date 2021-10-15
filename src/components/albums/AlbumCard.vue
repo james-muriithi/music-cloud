@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import PlayButton from "../player/PlayButton.vue";
+import PlayButton from "../player/controls/PlayButton.vue";
 export default {
   components: { PlayButton },
   name: "AlbumCard",

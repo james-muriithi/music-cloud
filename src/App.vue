@@ -127,4 +127,7 @@ export default {
 .justify-content-center {
   justify-content: center;
 }
+body{
+  overflow-x: hidden;
+}
 </style>

@@ -25,7 +25,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { fillImageDimensions } from "../../helpers";
-import FavouriteButton from './FavouriteButton.vue';
+import FavouriteButton from './controls/FavouriteButton.vue';
 export default {
   components: { FavouriteButton },
   name: "SongInfo",
