@@ -114,7 +114,7 @@ export default {
 
       switch (collection) {
         case "recent-songs":
-          commit("setSongsQueue", rootGetters["music/recentSongs"]);
+          commit("setSongsQueue", rootGetters["recentSongs"]);
           break;
         case "album":
           commit("setSongsQueue", rootGetters["album/albumSongs"]);
@@ -137,7 +137,7 @@ export default {
       commit("setTimeChangedByUser", value);
     },
     playNext({ state, dispatch }) {
-      if (state.repeat != 1 && state.queue.length > 0) {
+      if (state.repeat != 1 && state.queue && state.queue.length > 0) {
         const currentPlayingIndex =
           state.queue.findIndex(
             (song) => song.id == state.currentlyPlaying.id
