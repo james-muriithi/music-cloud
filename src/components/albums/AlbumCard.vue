@@ -3,10 +3,12 @@
     <div class="album-card elevation-2" :style="background">
       <div class="album-tracks white--text">{{ album.track_count }} tracks</div>
       <div class="album-details d-flex">
-        <!-- <v-btn class="play-button white--text" fab icon>
-          <v-icon>mdi-play</v-icon>
-        </v-btn> -->
-        <play-button class="play-button" @play="playAlbum" :colors="playButtonColors" />
+        <play-button
+          class="play-button"
+          @click.native.prevent=""
+          @play="playAlbum"
+          :colors="playButtonColors"
+        />
 
         <div class="details">
           <div
@@ -59,7 +61,7 @@ export default {
         light: {
           color: "#fff",
           background: "#772bfb",
-        },  
+        },
       };
     },
     background() {
@@ -72,10 +74,10 @@ export default {
     },
   },
   methods: {
-    playAlbum(){
-      this.$store.dispatch('album/playAlbum', this.album.id)
-    }
-  }
+    playAlbum() {
+      this.$store.dispatch("album/playAlbum", this.album.id);
+    },
+  },
 };
 </script>
 
