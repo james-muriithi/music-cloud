@@ -18,7 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import PlayButton from '../player/PlayButton.vue';
+import PlayButton from '../player/controls/PlayButton.vue';
 export default {
   components: { PlayButton },
   name: "PlaylistCard",

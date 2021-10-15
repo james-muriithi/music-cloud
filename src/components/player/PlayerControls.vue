@@ -19,12 +19,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import NextButton from './NextButton.vue';
-import PlayButton from "./PlayButton.vue";
-import PreviousButton from './PreviousButton.vue';
-import RepeatButton from './RepeatButton.vue';
-import ShuffleButton from './ShuffleButton.vue';
-import SongProgress from "./SongProgress.vue";
+import NextButton from './controls/NextButton.vue';
+import PlayButton from "./controls/PlayButton.vue";
+import PreviousButton from './controls/PreviousButton.vue';
+import RepeatButton from './controls/RepeatButton.vue';
+import ShuffleButton from './controls/ShuffleButton.vue';
+import SongProgress from "./controls/SongProgress.vue";
 export default {
   components: { SongProgress, PlayButton, RepeatButton, ShuffleButton, NextButton, PreviousButton },
   name: "PlayerControls",

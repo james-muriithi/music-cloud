@@ -35,11 +35,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayButton from "./PlayButton.vue";
+import PlayButton from "./controls/PlayButton.vue";
 import PlayerControls from "./PlayerControls.vue";
-import ProgressBar from "./ProgressBar.vue";
+import ProgressBar from "./controls/ProgressBar.vue";
 import SongInfo from "./SongInfo.vue";
-import Volume from "./Volume.vue";
+import Volume from "./controls/Volume.vue";
 export default {
   components: { Volume, PlayerControls, PlayButton, SongInfo, ProgressBar },
   name: "BottomPlayer",
