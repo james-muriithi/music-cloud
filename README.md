@@ -28,3 +28,6 @@ npm run lint
 1. Authentication
 1. Like Song
 1. Shuffle Songs
+
+### Licence
+
