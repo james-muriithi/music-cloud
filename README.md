@@ -23,5 +23,8 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Todo List
+1. Search
+1. Authentication
+1. Like Song
+1. Shuffle Songs
