@@ -6,15 +6,17 @@
       <v-spacer></v-spacer>
 
       <v-text-field
+        v-if="searchPage"
         dense
         single-line
         prepend-inner-icon="mdi-magnify"
         outlined
+        clearable
       ></v-text-field>
 
-      <!-- <v-btn icon>
+      <v-btn to="/search" icon v-else class="mr-2">
         <v-icon>mdi-magnify</v-icon>
-      </v-btn> -->
+      </v-btn>
       <theme-toggle class="ml-2 ml-sm-0" />
     </v-app-bar>
   </v-card>
@@ -27,6 +29,11 @@ export default {
   name: "AppBar",
   components: {
     ThemeToggle,
+  },
+  computed: {
+    searchPage() {
+      return this.$route.name == "search";
+    },
   },
   methods: {
     toggleDrawer() {
@@ -51,7 +58,7 @@ export default {
     display: none !important;
     margin: 0 !important;
   }
-  .v-text-field{
+  .v-text-field {
     max-width: 200px !important;
     margin-right: 10px !important;
     @media screen and (min-width: 992px) {
