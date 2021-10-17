@@ -22,17 +22,26 @@ const routes = [
   {
     path: "/recent",
     name: "recent",
-    component: () => import(/* webpackChunkName: "about" */ "../views/RecentlyAdded.vue"),
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/RecentlyAdded.vue"),
   },
   {
     path: "/albums",
     name: "albums",
-    component: () => import(/* webpackChunkName: "about" */ "../views/TopAlbums.vue"),
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/TopAlbums.vue"),
   },
   {
     path: "/playlists",
     name: "playlists",
-    component: () => import(/* webpackChunkName: "about" */ "../views/TopPlaylists.vue"),
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/TopPlaylists.vue"),
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Search.vue"),
   },
 ];
 
