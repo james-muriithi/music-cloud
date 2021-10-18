@@ -5,6 +5,7 @@ import music from "./modules/music";
 import player from "./modules/player";
 import album from "./modules/album";
 import playlist from "./modules/playlist";
+import search from "./modules/search";
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     music,
     player,
     album,
-    playlist
+    playlist,
+    search
   },
 });

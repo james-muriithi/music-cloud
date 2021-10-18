@@ -5,14 +5,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-text-field
-        v-if="searchPage"
-        dense
-        single-line
-        prepend-inner-icon="mdi-magnify"
-        outlined
-        clearable
-      ></v-text-field>
+      <search-input v-if="searchPage" />
 
       <v-btn to="/search" icon v-else class="mr-2">
         <v-icon>mdi-magnify</v-icon>
@@ -23,12 +16,14 @@
 </template>
 
 <script>
+import SearchInput from "./SearchInput.vue";
 import ThemeToggle from "./ThemeToggle.vue";
 
 export default {
   name: "AppBar",
   components: {
     ThemeToggle,
+    SearchInput,
   },
   computed: {
     searchPage() {

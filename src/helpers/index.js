@@ -110,6 +110,18 @@ function fillImageDimensions(url, width, height) {
   return url.replace("{w}", width).replace("{h}", height);
 }
 
+function debounce (fn, delay) {
+  var timeoutID = null
+  return function () {
+    clearTimeout(timeoutID)
+    var args = arguments
+    var that = this
+    timeoutID = setTimeout(function () {
+      fn.apply(that, args)
+    }, delay)
+  }
+}
+
 export {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -119,5 +131,6 @@ export {
   getSafe,
   fillImageDimensions,
   extractAlbumData,
-  extractPlaylistData
+  extractPlaylistData,
+  debounce
 };

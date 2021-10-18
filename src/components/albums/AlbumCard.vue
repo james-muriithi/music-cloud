@@ -57,7 +57,6 @@ export default {
       return "/";
     },
     isAlbumPlaying() {
-      console.log(this.currentAlbum.id == this.album.id && this.isPlaying);
       return this.currentAlbum.id == this.album.id && this.isPlaying;
     },
     playButtonColors() {

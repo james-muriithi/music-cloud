@@ -33,4 +33,12 @@ function fetchPlaylist(playlistId) {
     });
 }
 
-export { fetchBrowseData, fetchAlbum, fetchPlaylist };
+function search(keyword) {
+  return axios
+    .get("catalog/us/search", { params: { term: encodeURI(keyword) } })
+    .then((res) => {
+      return res.data;
+    });
+}
+
+export { fetchBrowseData, fetchAlbum, fetchPlaylist, search };
