@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @keypress.space.prevent="spacePause" tabindex="0">
+  <div id="app" @keypress.space="spacePause" tabindex="0">
     <v-app>
       <app-bar />
       <side-nav />

@@ -27,9 +27,9 @@ export default {
     setKeyword({ commit }, { keyword }) {
       commit("setKeyword", { keyword });
     },
-    search({getters}){
-        // search(getters.keyword);
-        console.log(encodeURI(getters.keyword));
+    async search({getters}){
+        const data = await search(getters.keyword);
+        console.log(data);
     }
   },
 };

@@ -33,9 +33,16 @@ function fetchPlaylist(playlistId) {
     });
 }
 
-function search(keyword) {
+function search(keyword, limit = 10) {
+  const types = "albums,artists,playlists,songs";
   return axios
-    .get("catalog/us/search", { params: { term: encodeURI(keyword) } })
+    .get("catalog/us/search", {
+      params: {
+        limit,
+        types,
+        term: encodeURIComponent(keyword).replace(/%20/g, "+"),
+      },
+    })
     .then((res) => {
       return res.data;
     });
