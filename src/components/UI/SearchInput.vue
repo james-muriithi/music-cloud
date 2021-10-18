@@ -6,6 +6,7 @@
     outlined
     clearable
     v-model.lazy="keyword"
+    ref="search"
   ></v-text-field>
 </template>
 
@@ -28,6 +29,14 @@ export default {
       this.$store.dispatch("search/search");
     },
   },
-  created() {},
+  mounted() {
+    const self = this;
+    this.$nextTick(() => {
+      const search = self.$refs.search;
+      setTimeout(() => {
+        search.$refs.input.focus();
+      }, 0);
+    });
+  },
 };
 </script>
