@@ -39,35 +39,45 @@ export default {
           description: description,
         },
         {
-          "og:type": "website",
+          property: "og:type",
+          content: "website",
         },
         {
-          "og:url": base_url,
+          property: "og:url",
+          content: base_url,
         },
         {
-          "og:title": title,
+          property: "og:title",
+          content: title,
         },
         {
-          "og:description": description,
+          property: "og:description",
+          content: description,
         },
         {
-          "og:image": image,
+          property: "og:image",
+          content: image,
         },
 
         {
-          "twitter:card": "summary_large_image",
+          property: "twitter:card",
+          content: "summary_large_image",
         },
         {
-          "twitter:url": base_url,
+          property: "twitter:url",
+          content: base_url,
         },
         {
-          "twitter:title": title,
+          property: "twitter:title",
+          content: title,
         },
         {
-          "twitter:description": description,
+          property: "twitter:description",
+          content: description,
         },
         {
-          "twitter:image": image,
+          property: "twitter:image",
+          content: image,
         },
       ],
     };
