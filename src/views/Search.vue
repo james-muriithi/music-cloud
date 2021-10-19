@@ -136,6 +136,15 @@
         </div>
       </div>
     </div>
+    <div class="ms-auto" v-else>
+      <v-img
+        height="500"
+        class="ml-auto mr-auto"
+        width="350"
+        :src="require('../assets/search.png')"
+      >
+      </v-img>
+    </div>
   </v-container>
 </template>
 
@@ -161,7 +170,13 @@ export default {
   },
   name: "Search",
   computed: {
-    ...mapGetters("search", ["resultSongs", "resultAlbums", "resultPlaylists", "keyword", "isLoading"]),
+    ...mapGetters("search", [
+      "resultSongs",
+      "resultAlbums",
+      "resultPlaylists",
+      "keyword",
+      "isLoading",
+    ]),
     ...mapGetters(["topArtists"]),
   },
 };
