@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import AudioPlayer from "./components/player/AudioPlayer.vue";
 import BottomPlayer from "./components/player/BottomPlayer.vue";
 import SmallScreenPlayer from "./components/player/SmallScreenPlayer.vue";
@@ -27,8 +27,65 @@ export default {
       playerOpen: false,
     };
   },
+  metaInfo() {
+    const description = this.metaDescription;
+    const title = this.metaTitle;
+    const base_url = this.baseUrl;
+    const image = this.baseUrl + this.metaImage;
+
+    return {
+      meta: [
+        {
+          description: description,
+        },
+        {
+          "og:type": "website",
+        },
+        {
+          "og:url": base_url,
+        },
+        {
+          "og:title": title,
+        },
+        {
+          "og:description": description,
+        },
+        {
+          "og:image": image,
+        },
+
+        {
+          "twitter:card": "summary_large_image",
+        },
+        {
+          "twitter:url": base_url,
+        },
+        {
+          "twitter:title": title,
+        },
+        {
+          "twitter:description": description,
+        },
+        {
+          "twitter:image": image,
+        },
+      ],
+    };
+  },
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
+    metaTitle() {
+      return "Music Cloud - Vue Music Player";
+    },
+    metaDescription() {
+      return "A music app that consumes apple music API and built using Vue, Vuex, Vue Router and Vuetify";
+    },
+    metaImage() {
+      return require("@/assets/logo.png");
+    },
+    baseUrl() {
+      return "https://musik-cloud.netlify.app";
+    },
   },
   methods: {
     closePlayer() {
@@ -45,7 +102,7 @@ export default {
       }
     },
     spacePause(e) {
-      if (e.target.tagName.toUpperCase() == 'INPUT') return;
+      if (e.target.tagName.toUpperCase() == "INPUT") return;
       this.togglePlay();
       e.preventDefault();
     },
@@ -127,7 +184,7 @@ export default {
 .justify-content-center {
   justify-content: center;
 }
-body{
+body {
   overflow-x: hidden;
 }
 </style>
