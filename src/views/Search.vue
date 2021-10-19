@@ -138,9 +138,9 @@
     </div>
     <div class="ms-auto" v-else>
       <v-img
-        height="500"
+        height="400"
         class="ml-auto mr-auto"
-        width="350"
+        width="300"
         :src="require('../assets/search.png')"
       >
       </v-img>
