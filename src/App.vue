@@ -27,75 +27,8 @@ export default {
       playerOpen: false,
     };
   },
-  // metaInfo() {
-  //   const description = this.metaDescription;
-  //   const title = this.metaTitle;
-  //   const base_url = this.baseUrl;
-  //   const image = this.baseUrl + this.metaImage;
-
-  //   return {
-  //     meta: [
-  //       {
-  //         description: description,
-  //       },
-  //       {
-  //         property: "og:type",
-  //         content: "website",
-  //       },
-  //       {
-  //         property: "og:url",
-  //         content: base_url,
-  //       },
-  //       {
-  //         property: "og:title",
-  //         content: title,
-  //       },
-  //       {
-  //         property: "og:description",
-  //         content: description,
-  //       },
-  //       {
-  //         property: "og:image",
-  //         content: image,
-  //       },
-
-  //       {
-  //         property: "twitter:card",
-  //         content: "summary_large_image",
-  //       },
-  //       {
-  //         property: "twitter:url",
-  //         content: base_url,
-  //       },
-  //       {
-  //         property: "twitter:title",
-  //         content: title,
-  //       },
-  //       {
-  //         property: "twitter:description",
-  //         content: description,
-  //       },
-  //       {
-  //         property: "twitter:image",
-  //         content: image,
-  //       },
-  //     ],
-  //   };
-  // },
   computed: {
     ...mapGetters("player", ["isPlaying", "currentPlaying"]),
-    // metaTitle() {
-    //   return "Music Cloud - Vue Music Player";
-    // },
-    // metaDescription() {
-    //   return "A music app that consumes apple music API and built using Vue, Vuex, Vue Router and Vuetify";
-    // },
-    // metaImage() {
-    //   return require("@/assets/logo.png");
-    // },
-    // baseUrl() {
-    //   return "https://musik-cloud.netlify.app";
-    // },
   },
   methods: {
     closePlayer() {
