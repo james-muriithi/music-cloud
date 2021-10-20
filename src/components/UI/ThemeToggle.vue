@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tooltip v-if="!$vuetify.theme.dark" bottom data-app>
+    <v-tooltip v-if="!isDark" bottom data-app>
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" color="primary" small fab @click="darkMode">
           <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
@@ -24,6 +24,11 @@
 import { saveToLocalStorage } from "@/helpers/index.js";
 export default {
   name: "ThemeToggle",
+  computed: {
+    isDark(){
+      return this.$vuetify.theme.dark;
+    }
+  },
   methods: {
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
