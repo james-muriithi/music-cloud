@@ -31,7 +31,7 @@ npm run lint
 1. PWA
 1. SEO ✅
 1. Tests ✅
-1. Lyrics API
+1. Lyrics API ✅
 
 ### Licence
 
