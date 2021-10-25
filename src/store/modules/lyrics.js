@@ -1,13 +1,17 @@
-import { getSongLyrics } from "../../helpers/genius-lyrics";
+import { fetchLyrics } from "../../helpers/genius-lyrics";
 
 const lyrics = {
   namespaced: true,
   state: {
     showDrawer: false,
+    lyrics: null,
   },
   getters: {
     showDrawer(state) {
       return state.showDrawer;
+    },
+    lyrics(state) {
+      return state.lyrics;
     },
   },
   mutations: {
@@ -17,6 +21,9 @@ const lyrics = {
     setDrawerState(state, payload) {
       state.showDrawer = payload;
     },
+    setLyrics(state, lyrics) {
+      state.lyrics = lyrics;
+    },
   },
   actions: {
     toggleDrawer({ commit }) {
@@ -25,8 +32,17 @@ const lyrics = {
     setDrawerState({ commit }, state) {
       commit("setDrawerState", state);
     },
-    fetchLyrics() {
-      getSongLyrics("Easy on me", "Adelle");
+    fetchLyrics({ commit }, { title, artist }) {
+      commit("setLyrics", null);
+
+      return fetchLyrics(title, artist)
+        .then((embedContent) => {
+          console.log(embedContent);
+          commit("setLyrics", embedContent);
+        })
+        .catch((e) => {
+          throw new Error(e);
+        });
     },
   },
 };

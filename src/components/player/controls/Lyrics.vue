@@ -33,7 +33,6 @@ export default {
   methods: {
     openLyricsDrawer() {
       this.$store.dispatch("lyrics/setDrawerState", !this.drawerOpen);
-      this.$store.dispatch("lyrics/fetchLyrics");
     },
   },
 };

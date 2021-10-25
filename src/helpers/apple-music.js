@@ -5,12 +5,15 @@ const API_BASE_URL = "https://api.music.apple.com/v1/";
 const token = process.env.VUE_APP_TOKEN;
 
 axios.defaults.baseURL = API_BASE_URL;
-axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+// axios.defaults.headers.common = {
+//   Authorization: `Bearer ${token}`,
+// };
 
 function fetchBrowseData(limit) {
   return axios
     .get("catalog/us/charts", {
       params: { types: "albums,songs,playlists", limit },
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
       return res.data.results;
@@ -19,7 +22,10 @@ function fetchBrowseData(limit) {
 
 function fetchAlbum(albumId) {
   return axios
-    .get("catalog/us/albums", { params: { ids: albumId } })
+    .get("catalog/us/albums", {
+      params: { ids: albumId },
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((res) => {
       return res.data.data[0];
     });
@@ -27,7 +33,10 @@ function fetchAlbum(albumId) {
 
 function fetchPlaylist(playlistId) {
   return axios
-    .get("catalog/us/playlists", { params: { ids: playlistId } })
+    .get("catalog/us/playlists", {
+      params: { ids: playlistId },
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((res) => {
       return res.data.data[0];
     });
@@ -42,6 +51,7 @@ function search(keyword, limit = 10) {
         types,
         term: encodeURIComponent(keyword).replace(/%20/g, "+"),
       },
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => {
       return res.data;
