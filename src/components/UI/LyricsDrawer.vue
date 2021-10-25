@@ -15,9 +15,9 @@
     </v-container>
     <div :class="`lyrics-container ${loading ? 'loading' : ''}`">
       <h2
-        class="browse-page-category"
+        class="browse-page-category text-center"
         v-if="error"
-        style="margin: 4em 10px 0 10px"
+        style="margin: 4em 10px 0 10px; color: #fff"
       >
         {{ error }}
       </h2>
@@ -74,10 +74,15 @@ export default {
         this.currentPlaying.artist
       ) {
         this.loading = true;
-        await this.$store.dispatch("lyrics/fetchLyrics", {
-          title: this.currentPlaying.title,
-          artist: this.currentPlaying.artist,
-        });
+        this.error = null;
+        try {
+          await this.$store.dispatch("lyrics/fetchLyrics", {
+            title: this.currentPlaying.title,
+            artist: this.currentPlaying.artist,
+          });
+        } catch (error) {
+          this.error = error.message;
+        }
         this.loading = false;
       }
     },

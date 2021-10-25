@@ -12,7 +12,7 @@ async function fetchLyrics(title, artist) {
     const songId = await getHitsFromResponse(hits, title, artist);
     return fetchSongLyrics(songId);
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 
   // trial 2
@@ -23,12 +23,12 @@ async function fetchLyrics(title, artist) {
     }
     newSongName = newSongName.replace(/\s+$/, "");
 
-    hits = await fetchHits(newSongName, artist);
+    hits = await fetchHits(artist, newSongName);
 
-    const songId = await getHitsFromResponse(hits, title, artist);
+    const songId = await getHitsFromResponse(hits, newSongName, artist);
     return fetchSongLyrics(songId);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 }
 
@@ -55,10 +55,9 @@ function fetchSongLyrics(songId) {
 function fetchHits(title, artist) {
   return myAxios
     .get(
-      "https://api.genius.com/search",
+      `https://api.genius.com/search?q=${title} ${artist}`,
       {
         params: {
-          q: `${title.toLowerCase()} ${artist.toLowerCase()}`,
           access_token: process.env.VUE_APP_GENIUS_TOKEN,
         },
       },

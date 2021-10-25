@@ -41,7 +41,7 @@ const lyrics = {
           commit("setLyrics", embedContent);
         })
         .catch((e) => {
-          throw new Error(e);
+          throw new Error(e.message);
         });
     },
   },
