@@ -1,7 +1,9 @@
+import { getSongLyrics } from "../../helpers/genius-lyrics";
+
 const lyrics = {
   namespaced: true,
   state: {
-    showDrawer: true,
+    showDrawer: false,
   },
   getters: {
     showDrawer(state) {
@@ -22,6 +24,9 @@ const lyrics = {
     },
     setDrawerState({ commit }, state) {
       commit("setDrawerState", state);
+    },
+    fetchLyrics() {
+      getSongLyrics("Easy on me", "Adelle");
     },
   },
 };
