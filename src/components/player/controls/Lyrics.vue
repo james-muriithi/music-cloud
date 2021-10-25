@@ -1,5 +1,5 @@
 <template>
-  <v-btn icon :style="cssProps" :title="title">
+  <v-btn icon :style="cssProps" :title="title" @click="openLyricsDrawer">
     <v-icon>{{ icon }}</v-icon>
   </v-btn>
 </template>
@@ -26,8 +26,15 @@ export default {
     title() {
       return "Lyrics";
     },
+    drawerOpen() {
+      return this.$store.getters["lyrics/showDrawer"];
+    },
   },
-  methods: {},
+  methods: {
+    openLyricsDrawer() {
+      this.$store.dispatch("lyrics/setDrawerState", !this.drawerOpen);
+    },
+  },
 };
 </script>
 

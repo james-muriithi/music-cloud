@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="showDrawer"
     :width="400"
-    :permanent="drawer"
+    :permanent="showDrawer"
     fixed
     right
   >
@@ -22,9 +22,19 @@ export default {
       drawer: true,
     };
   },
+  computed: {
+    showDrawer: {
+      get: function () {
+        return this.$store.getters["lyrics/showDrawer"];
+      },
+      set: function (state) {
+        this.$store.dispatch("lyrics/setDrawerState", state);
+      },
+    },
+  },
   methods: {
     closeDrawer() {
-      this.drawer = false;
+      this.$store.dispatch("lyrics/setDrawerState", false);
     },
   },
 };
