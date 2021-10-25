@@ -6,6 +6,7 @@ function getSongLyrics(title, artist) {
     title,
     artist,
     optimizeQuery: true,
+    authHeader: true,
   };
 
   getLyrics(options).then((lyrics) => console.log(lyrics));
