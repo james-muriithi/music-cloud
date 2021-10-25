@@ -8,6 +8,7 @@
         <bottom-player @openPlayer="openPlayer" />
         <small-screen-player :open="playerOpen" @close="closePlayer" />
       </v-main>
+      <lyrics-drawer />
     </v-app>
     <audio-player />
   </div>
@@ -18,9 +19,10 @@ import { mapGetters } from "vuex";
 import AudioPlayer from "./components/player/AudioPlayer.vue";
 import BottomPlayer from "./components/player/BottomPlayer.vue";
 import SmallScreenPlayer from "./components/player/SmallScreenPlayer.vue";
+import LyricsDrawer from "./components/UI/LyricsDrawer.vue";
 export default {
   name: "App",
-  components: { BottomPlayer, AudioPlayer, SmallScreenPlayer },
+  components: { BottomPlayer, AudioPlayer, SmallScreenPlayer, LyricsDrawer },
   data() {
     return {
       isLoading: false,
