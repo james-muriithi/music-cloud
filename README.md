@@ -1,7 +1,7 @@
 # Music Cloud
 
 ## ScreenShots
-<img src="./screenshots/screencapture2.png" />
+![Screenshot](./screenshots/screencapture2.png)
 
 ## Project setup
 ```

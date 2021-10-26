@@ -37,7 +37,6 @@ const lyrics = {
 
       return fetchLyrics(title, artist)
         .then((embedContent) => {
-          console.log(embedContent);
           commit("setLyrics", embedContent);
         })
         .catch((e) => {

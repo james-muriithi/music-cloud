@@ -76,7 +76,7 @@ export default {
         this.loading = true;
         this.error = null;
         try {
-          await this.$store.dispatch("lyrics/fetchLyrics", {
+          return await this.$store.dispatch("lyrics/fetchLyrics", {
             title: this.currentPlaying.title,
             artist: this.currentPlaying.artist,
           });
