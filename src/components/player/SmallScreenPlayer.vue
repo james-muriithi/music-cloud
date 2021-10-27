@@ -16,28 +16,29 @@
               Playlist
             </v-col>
           </v-row>
-          <div class="song-image d-flex justify-content-center mt-7">
+          <div class="song-image d-flex justify-content-center mt-5">
             <v-img
               :lazy-src="thumbnail"
-              max-height="250"
-              max-width="240"
+              max-height="200"
+              max-width="180"
               min-height="200"
               :src="cover"
             ></v-img>
             <v-img class="d-none" :src="cover" ref="img" />
           </div>
         </v-container>
-        <v-container fluid class="lower-part mt-3 px-1">
+        <v-container fluid class="lower-part mt-0 px-5">
           <div class="center d-flex">
             <div class="shuffle-repeat text-left">
               <shuffle-button />
               <repeat-button />
             </div>
             <div class="share ml-auto">
+              <lyrics/>
               <share-button :size="22" :shareText="shareData" />
             </div>
           </div>
-          <div class="song-info text-left px-8">
+          <div class="song-info text-left mt-2 px-2">
             <div class="song-title fill-width">
               <router-link to="/">{{ currentPlaying.title }}</router-link>
             </div>
@@ -94,6 +95,7 @@ import RepeatButton from "./controls/RepeatButton.vue";
 import ShareButton from "./controls/ShareButton.vue";
 import ShuffleButton from "./controls/ShuffleButton.vue";
 import SongProgress from "./controls/SongProgress.vue";
+import Lyrics from './controls/Lyrics.vue';
 export default {
   name: "SmallScreenPlayer",
   components: {
@@ -105,6 +107,7 @@ export default {
     ShuffleButton,
     RepeatButton,
     ShareButton,
+    Lyrics,
   },
   emits: ["close"],
   props: {
@@ -184,7 +187,7 @@ export default {
 }
 .player-sheet {
   .upper-part {
-    padding-top: 20px;
+    padding-top: 10px;
     border-bottom: none !important;
     background-size: 100% 100%;
     background-position: center center;
@@ -196,7 +199,7 @@ export default {
   }
 
   .song-title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 700;
     overflow: hidden;
     white-space: nowrap;

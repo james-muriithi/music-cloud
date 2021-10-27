@@ -6,7 +6,7 @@
     fixed
     right
     dark
-    style="background: #000"
+    :style="`background: #000; ${smallScreen ? 'z-index: 100000' : ''}`"
   >
     <v-container>
       <v-btn icon @click="closeDrawer">
@@ -62,6 +62,9 @@ export default {
     },
     ...mapGetters("lyrics", ["lyrics"]),
     ...mapGetters("player", ["currentPlaying"]),
+    smallScreen() {
+      return this.$vuetify.breakpoint.width < 450;
+    },
   },
   methods: {
     closeDrawer() {
@@ -76,10 +79,12 @@ export default {
         this.loading = true;
         this.error = null;
         try {
-          return await this.$store.dispatch("lyrics/fetchLyrics", {
+          const data = await this.$store.dispatch("lyrics/fetchLyrics", {
             title: this.currentPlaying.title,
             artist: this.currentPlaying.artist,
           });
+          this.loading = false;
+          return data;
         } catch (error) {
           this.error = error.message;
         }
