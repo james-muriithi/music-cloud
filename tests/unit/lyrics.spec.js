@@ -2,7 +2,7 @@ import LyricsDrawer from "@/components/UI/LyricsDrawer.vue";
 import { mount } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import store from "@/store";
-import Vue from "vue";
+// import Vue from "vue";
 
 describe("LyricsDrawer.vue", () => {
   let wrapper;
@@ -39,7 +39,7 @@ describe("LyricsDrawer.vue", () => {
 
     await wrapper.vm.fetchLyrics();
 
-    Vue.nextTick();
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.vm.lyrics).not.toBe(null);
   }, 30000);

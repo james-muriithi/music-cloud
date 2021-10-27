@@ -63,7 +63,7 @@ function fetchHits(title, artist) {
       },
       { headers: { accept: "*/*" } }
     )
-    .then((d) => d.data);
+    .then((d) => d.data).catch(e => console.log(e));
 }
 
 function getHitsFromResponse(searchResponse, songName, artistName) {
