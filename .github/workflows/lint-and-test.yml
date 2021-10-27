@@ -1,4 +1,6 @@
 name: Run Unit Tests and Lint Files
+env: 
+  VUE_APP_GENIUS_TOKEN: ${{ secrets.VUE_APP_GENIUS_TOKEN }}
 on: 
   push:
     branches: 
