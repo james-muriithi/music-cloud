@@ -34,7 +34,7 @@
               <repeat-button />
             </div>
             <div class="share ml-auto">
-              <lyrics/>
+              <lyrics />
               <share-button :size="22" :shareText="shareData" />
             </div>
           </div>
@@ -51,8 +51,11 @@
             <div class="song-controls mt-5">
               <v-row>
                 <v-col cols="12" class="d-flex align-items-center">
-                  <favourite-button :size="30" />
-
+                  <favourite-button
+                    :size="30"
+                    @favourite="toggleFavourite"
+                    :isFavourite="isFavourite"
+                  />
                   <div
                     class="
                       d-flex
@@ -95,7 +98,7 @@ import RepeatButton from "./controls/RepeatButton.vue";
 import ShareButton from "./controls/ShareButton.vue";
 import ShuffleButton from "./controls/ShuffleButton.vue";
 import SongProgress from "./controls/SongProgress.vue";
-import Lyrics from './controls/Lyrics.vue';
+import Lyrics from "./controls/Lyrics.vue";
 export default {
   name: "SmallScreenPlayer",
   components: {
@@ -135,6 +138,9 @@ export default {
         this.currentPlaying.title
       );
     },
+    isFavourite() {
+      return this.$store.getters["isSongFavourite"](this.currentPlaying.id);
+    },
   },
   watch: {
     open: function (val) {
@@ -173,6 +179,13 @@ export default {
           })
           .catch((e) => console.log(e));
       });
+    },
+    toggleFavourite() {
+      if (this.currentPlaying.id) {
+        this.$store.dispatch("toggleFavouriteSong", {
+          songId: this.currentPlaying.id,
+        });
+      }
     },
   },
   mounted() {
