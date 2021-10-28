@@ -2,9 +2,7 @@
   <div class="song-card">
     <div class="d-flex">
       <div class="song-image d-flex align-items-center">
-        <div class="song-index" v-if="index">
-          {{index}}.
-        </div>
+        <div class="song-index" v-if="index">{{ index }}.</div>
         <v-img :lazy-src="cover" fluid :src="cover" class="fill-height rounded">
           <!-- <div class="play-btn" @click="play">
             <v-btn icon fab x-small>
@@ -52,7 +50,10 @@
           class="text-right d-flex actions pt-4 pr-0 pr-sm-3"
         >
           <v-btn icon class="like d-none d-sm-flex">
-            <v-icon>mdi-heart-outline</v-icon>
+            <favourite-button
+              @favourite="toggleFavourite"
+              :isFavourite="isFavourite"
+            />
           </v-btn>
           <v-btn icon class="">
             <v-icon>mdi-dots-horizontal</v-icon>
@@ -64,9 +65,10 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import FavouriteButton from "../player/controls/FavouriteButton.vue";
 import PlayButton from "../player/controls/PlayButton.vue";
 export default {
-  components: { PlayButton },
+  components: { PlayButton, FavouriteButton },
   name: "SongCard",
   props: {
     song: {
@@ -75,8 +77,8 @@ export default {
     },
     index: {
       type: Number,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
@@ -112,6 +114,9 @@ export default {
     songIsPlaying() {
       return this.isPlaying && this.currentSong;
     },
+    isFavourite() {
+      return this.$store.getters["isSongFavourite"](this.song.id);
+    },
   },
   methods: {
     play() {
@@ -126,6 +131,13 @@ export default {
         collection: "recent-songs",
       });
     },
+    toggleFavourite() {
+      if (this.song.id) {
+        this.$store.dispatch("toggleFavouriteSong", {
+          songId: this.song.id,
+        });
+      }
+    },
   },
 };
 </script>
@@ -137,7 +149,7 @@ export default {
   @media (max-width: 576px) {
     padding-right: 4px;
   }
-  .song-index{
+  .song-index {
     flex: 0 0 auto;
     width: 30px;
     min-width: 30px;
