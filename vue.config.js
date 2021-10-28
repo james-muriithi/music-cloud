@@ -80,4 +80,13 @@ module.exports = {
     });
   },
   transpileDependencies: ["vuetify"],
+  pwa: {
+    name: "Music Cloud",
+    themeColor: "#512DA8",
+    assetsVersion: "2",
+    manifestOptions: {},
+    workboxOptions: {
+      skipWaiting: true
+    }
+  },
 };

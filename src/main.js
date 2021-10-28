@@ -11,6 +11,7 @@ import mixin from './mixin'
 import SideNav from './components/UI/SideNav';
 import AppBar from "./components/UI/AppBar";
 import BottomPlayer from "./components/player/BottomPlayer";
+import './registerServiceWorker'
 
 Vue.config.productionTip = false;
 

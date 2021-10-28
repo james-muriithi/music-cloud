@@ -28,7 +28,7 @@ npm run lint
 1. Authentication 
 1. Like Song ✅ 
 1. Shuffle Songs
-1. PWA
+1. PWA ✅
 1. SEO ✅
 1. Tests ✅
 1. Lyrics API ✅
