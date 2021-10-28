@@ -60,6 +60,10 @@ export default {
       console.log(error);
       savedData = getters.favourites;
     }
+    if (!savedData) {
+      savedData = getters.favourites;
+    }
+
     commit("setFavourites", { favourites: savedData });
   },
 };
