@@ -26,7 +26,7 @@ npm run lint
 ### Todo List
 1. Search ✅ 
 1. Authentication 
-1. Like Song
+1. Like Song ✅ 
 1. Shuffle Songs
 1. PWA
 1. SEO ✅
