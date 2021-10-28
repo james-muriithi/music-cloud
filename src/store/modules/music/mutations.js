@@ -19,4 +19,8 @@ export default {
       (id) => id != songId
     );
   },
+  setFavourites(state, { favourites }) {
+    // state.favourites = Object.assign(favourites);
+    state.favourites = favourites;
+  },
 };

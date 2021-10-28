@@ -45,9 +45,21 @@ export default {
   toggleFavouriteSong({ commit, getters }, { songId }) {
     if (getters.isSongFavourite(songId)) {
       commit("unFavouriteSong", { songId });
-      return;
+    } else {
+      commit("favouriteSong", { songId });
     }
-    commit("favouriteSong", { songId });
-    console.log(getters.favouriteSongs);
+
+    saveToLocalStorage("favourites", JSON.stringify(getters.favourites));
+  },
+  fetchFavourites({ commit, getters }) {
+    let savedData = getFromLocalStorage("favourites");
+
+    try {
+      savedData = JSON.parse(savedData);
+    } catch (error) {
+      console.log(error);
+      savedData = getters.favourites;
+    }
+    commit("setFavourites", { favourites: savedData });
   },
 };
