@@ -52,6 +52,9 @@ export default {
       e.preventDefault();
     },
   },
+  mounted() {
+    this.$store.dispatch("fetchFavourites");
+  },
 };
 </script>
 

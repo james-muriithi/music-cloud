@@ -1,5 +1,5 @@
 <template>
-  <v-btn icon :style="cssProps">
+  <v-btn icon :style="cssProps" @click="toggleFavourite">
     <v-icon>{{ icon }}</v-icon>
   </v-btn>
 </template>
@@ -7,29 +7,41 @@
 <script>
 export default {
   name: "FavouriteButton",
+  emits: ["favourite"],
   props: {
     size: {
       type: Number,
       default: 24,
     },
-    icon: {
-      type: String,
-      default: "mdi-heart-outline",
+    isFavourite: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
-    cssProps(){
+    cssProps() {
       return {
-        '--size': `${this.size}px`
+        "--size": `${this.size}px`,
+      };
+    },
+    icon() {
+      if (!this.isFavourite) {
+        return "mdi-heart-outline";
       }
-    }
+      return "mdi-heart";
+    },
+  },
+  methods: {
+    toggleFavourite() {
+      this.$emit("favourite");
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-button{
-  i.v-icon{
+button {
+  i.v-icon {
     font-size: var(--size) !important;
   }
 }
