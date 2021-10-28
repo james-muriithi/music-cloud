@@ -42,4 +42,12 @@ export default {
     commit("setTopAlbums", albums);
     commit("setTopPlaylists", playlists);
   },
+  toggleFavouriteSong({ commit, getters }, { songId }) {
+    if (getters.isSongFavourite(songId)) {
+      commit("unFavouriteSong", { songId });
+      return;
+    }
+    commit("favouriteSong", { songId });
+    console.log(getters.favouriteSongs);
+  },
 };
