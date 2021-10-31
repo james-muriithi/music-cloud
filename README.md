@@ -1,7 +1,7 @@
 # Music Cloud
 
 ## ScreenShots
-![Screenshot](./screenshots/screencapture2.png)
+![Screenshot](./screenshots/screencapture3.png)
 
 ## Project setup
 ```
