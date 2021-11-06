@@ -45,10 +45,10 @@
           icon
           target="_blank"
           rel="noopener noreferrer"
-          class="mb-2"
+          class="mb-3"
           link
         >
-          <v-icon>mdi-github</v-icon>
+          <v-icon size="35">mdi-github</v-icon>
         </v-btn>
 
         <theme-toggle />
