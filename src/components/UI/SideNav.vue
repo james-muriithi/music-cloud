@@ -39,15 +39,26 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-        <div class="pa-2 text-left d-none">
-          <theme-toggle />
-        </div>
-      </template>
+      <div class="pa-2 text-left">
+        <v-btn
+          href="https://github.com/james-muriithi/music-cloud"
+          icon
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mb-2"
+          link
+        >
+          <v-icon>mdi-github</v-icon>
+        </v-btn>
+
+        <theme-toggle />
+      </div>
+    </template>
   </v-navigation-drawer>
 </template>
 
 <script>
-import ThemeToggle from './ThemeToggle.vue';
+import ThemeToggle from "./ThemeToggle.vue";
 export default {
   components: { ThemeToggle },
   data() {
@@ -187,5 +198,11 @@ export default {
   .nd {
     background: var(--v-navBackground-base);
   }
+}
+</style>
+
+<style>
+.v-navigation-drawer__append {
+  margin-bottom: 90px;
 }
 </style>
